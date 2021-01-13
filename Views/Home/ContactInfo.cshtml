@@ -1,0 +1,70 @@
+﻿@{
+    ViewData["Title"] = "Contact Info";
+}
+
+<link href="~/css/site.css" rel="stylesheet" runat="server" />
+<script src="/js/site.js"></script>
+<datalist id="Syntax">
+    <option value="View history." />
+    <option value="Get index." />
+    <option value="Get resume." />
+    <option value="Get projects." />
+    <option value="Get contact information." />
+    <option value="Make red." />
+    <option value="Make blue." />
+    <option value="Make gray." />
+    <option value="Make pink." />
+    <option value="Make black." />
+    <option value="Make brown." />
+    <option value="Make green." />
+    <option value="Make white." />
+    <option value="Make orange." />
+    <option value="Make purple." />
+    <option value="Make yellow." />
+</datalist>
+
+<div class="text-center">
+    <h1 class="display-4">Contact.</h1>
+    <p>Navigate to enter a command...</p>
+    <br />
+    <br />
+    <br />
+    <input class="ss" list="Syntax" type="text" id="JSInstructionString" placeholder="Make gray." />
+    <button class="tt btn btn-primary" onclick="Build()">Build (press enter)</button>
+    <br />
+</div>
+<br />
+<br />
+<br />
+<body>
+    <header>
+        <!-- 1-3-2021
+        Author: Eric Dee
+        http://EricDeeTTSTS.com/ -->
+        <meta charset="uft-8" />
+        <meta name="author" content="Eric Christopher Dee, Eric C. Dee, Eric Dee">
+        <meta name="description" content="Portfolio">
+    </header>
+
+    <div class="ContactFlexBox">
+        <section class="ContactFlexArticles">
+            <p>Please, let me know if you have any questions.</p>
+            <p><a href="mailto:edee@students.ntc.edu">Jobs@EricDeeTTSTS.com</a></p>
+            <p><a href="tel:+14143649180">1-414-446-1099</a></p>
+        </section>
+
+        <section class="ContactFlexArticles FloatRight"><a href="https://github.com/EricDeeTTSTS/" target="_blank">Github</a><br />
+        <a href="https://stackoverflow.com/story/ericdee" target="_blank">Stackoverflow</a></section>
+
+        <section class="ContactFlexArticles">
+            <script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
+            <div class="ContactFlexLinks">
+            <div class="LI-profile-badge" data-version="v1" data-size="large" data-locale="en_US" data-type="vertical" data-theme="dark" data-vanity="ericdeettsts"><a class="LI-simple-link" href='https://www.linkedin.com/in/ericdeettsts?trk=profile-badge'>Eric Dee</a></div></div>
+        </section>
+    </div>
+
+</body>
+
+<h3 class="Index">Thank you.</h3>
+
+<script src="/js/KeyUp.js"></script>

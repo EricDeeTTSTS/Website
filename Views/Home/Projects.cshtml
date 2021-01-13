@@ -1,0 +1,91 @@
+﻿@{
+    ViewData["Title"] = "Projects";
+}
+
+<link href="~/css/site.css" rel="stylesheet" runat="server" />
+<script src="/js/site.js"></script>
+<datalist id="Syntax">
+    <option value="View history." />
+    <option value="Get index." />
+    <option value="Get resume." />
+    <option value="Get projects." />
+    <option value="Get contact information." />
+    <option value="Make red." />
+    <option value="Make blue." />
+    <option value="Make gray." />
+    <option value="Make pink." />
+    <option value="Make black." />
+    <option value="Make brown." />
+    <option value="Make green." />
+    <option value="Make white." />
+    <option value="Make orange." />
+    <option value="Make purple." />
+    <option value="Make yellow." />
+</datalist>
+
+<div class="text-center">
+    <h1 class="display-4">Projects.</h1>
+    <p>Navigate to enter a command...</p>
+    <br />
+    <br />
+    <br />
+    <input class="ss" list="Syntax" type="text" id="JSInstructionString" placeholder="Make gray." />
+    <button class="tt btn btn-primary" onclick="Build()">Build (press enter)</button>
+    <br />
+</div>
+<br />
+<br />
+<br />
+<body>
+    <header>
+        <!-- 1-3-2021
+        Author: Eric Dee
+        http://EricDeeTTSTS.com/ -->
+        <meta charset="uft-8" />
+        <meta name="author" content="Eric Christopher Dee, Eric C. Dee, Eric Dee">
+        <meta name="description" content="Portfolio">
+    </header>
+    <h1>All assorted projects are found here.</h1>
+    <article><p>These are my projects along with the course materials for Software Development portfolio building at NTC.</p></article>
+
+    <h2 class="Index">Type: Web Design</h2>
+    <h3>Full site project:</h3>
+    <p>This website is loosely based on an HTML design which is or was a requirement for the Web Design Course at North Central Technical College.</p>
+    <p>View the full repository <a href="https://github.com/EricDeeTTSTS/Website" target="_blank" >here</a>.</p>
+    <script src="https://gist.github.com/EricDeeTTSTS/0f09200c980f57bfd1368097a683a978.js"></script>
+    </a>
+    <br />
+    <h2 class="Index">Type: Database Concepts</h2>
+    <h3>Conceptual microcontroller kits and parts sales database</h3>
+    <p>
+        This is the database project which is or was a requirement for the Database Concepts Course at North Central Technical College.
+        It is built based on STEM Arduino circuits.
+    </p>
+    <br />
+    <a href="/Images/Projects%20Image%20For%20Data%20Concepts%20C.png" target="_blank">
+        <img class="ProjectsReduced" src="/Images/Projects%20Image%20For%20Data%20Concepts%20C.png" alt="For some reason your browser did not load this image." />
+    </a>
+    <br />
+    <p>
+        Found in the downloadable zip file are all the conceptual diagrams, data dictionaries and tables, along with the SQL data definition, and
+        manipulation language commands used to create, and query
+        this database.
+    </p>
+    <a href="/Finals/Final Data Concepts Project Two Parts ED.zip" download >Download from this website.</a>
+    <br />
+    <br />
+    <h2 class="Index">Type: Programming Concepts</h2>
+    <h3>School grading program scenario</h3>
+    <p>
+        This is the Programming Concepts project which is part of the learning pathway at North Central Technical College. It is based around creating a object
+        oriented teacher to student grading scenario using Microsoft's C# language. Because this is a scenario which is graded by a feedback system, I am unable
+        to ethically share the source code for it.
+    </p>
+    <br />
+    <a href="/Images/Projects%20Image%20For%20Programming%20Concepts%20C.png" target="_blank">
+        <img class="ProjectsReduced" src="/Images/Projects%20Image%20For%20Programming%20Concepts%20C.png" alt="For some reason your browser did not load this image." />
+    </a>
+    <br />
+</body>
+
+<script src="/js/KeyUp.js"></script>

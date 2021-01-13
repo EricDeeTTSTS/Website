@@ -1,0 +1,53 @@
+﻿<link href="~/css/site.css" rel="stylesheet" runat="server" />
+<script src="/js/site.js"></script>
+<datalist id="Syntax">
+    <option value="View history." />
+    <option value="Get index." />
+    <option value="Get resume." />
+    <option value="Get projects." />
+    <option value="Get contact information." />
+    <option value="Make red." />
+    <option value="Make blue." />
+    <option value="Make gray." />
+    <option value="Make pink." />
+    <option value="Make black." />
+    <option value="Make brown." />
+    <option value="Make green." />
+    <option value="Make white." />
+    <option value="Make orange." />
+    <option value="Make purple." />
+    <option value="Make yellow." />
+</datalist>
+
+<div class="text-center">
+    <h1 class="display-4">Search for a instruction.</h1>
+    <p>Navigate to enter a command...</p>
+    <br />
+    <br />
+    <br />
+    <input class="ss" list="Syntax" type="text" id="JSInstructionString" placeholder="Make gray." />
+    <button class="tt btn btn-primary" onclick="Build()">Build (press enter)</button>
+    <br />
+</div>
+<br />
+<br />
+<br />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="DisplaySearchResults">
+            <div class="form-group">
+                <label for="SearchPhrase" class="control-label"></label>
+                <input name="SearchPhrase" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Search" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+<script src="/js/KeyUp.js"></script>

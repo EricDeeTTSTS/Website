@@ -1,0 +1,111 @@
+﻿@model EricDeeTTSTS.Models.StringCommand
+
+@{
+    ViewData["Title"] = "Make a message appear on the database.";
+}
+
+<!-- 2-5-2021
+Author: Eric Dee
+http://EricDeeTTSTS.com/ -->
+
+<script src="~/js/ArticleOrdering.js"></script>
+<script src="/js/CommandLine.js"></script>
+<script src="~/js/Interpreter.js"></script>
+<link href="~/css/boot.css" rel="stylesheet" runat="server" />
+
+<datalist id="Syntax">
+    <option value="go Contact Info" />
+    <option value="go Index" />
+    <option value="go Projects" />
+    <option value="go Resume" />
+    <option value="reset" />
+    <option value="to red" />
+    <option value="to blue" />
+    <option value="to gray" />
+    <option value="to pink" />
+    <option value="to black" />
+    <option value="to brown" />
+    <option value="to green" />
+    <option value="to white" />
+    <option value="to orange" />
+    <option value="to purple" />
+    <option value="to yellow" />
+    <option value="view history" />
+</datalist>
+
+<body onload="PrintCommandConsoles(5)">
+    <header>
+        <meta charset="uft-8" />
+        <meta name="author" content="Eric Dee">
+        <meta name="description" content="Write your message below.">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </header>
+
+    <input class="UserInput" id="UserInput" list="Syntax" Type="text" placeholder="to blue" />
+
+    <script>
+        document.getElementById("UserInput").addEventListener("keyup", function (event) {
+            if (event.keyCode === 13) {
+                if (!ConsolePrinterIsBusy) {
+                    Build();
+                }
+            }
+        });
+    </script>
+
+    <section id="MainConsole">
+    </section>
+
+    <div id="FlexArea">
+
+        <section class="ConsoleFlexArea" id="ChildConsole1">
+        </section>
+
+        <section class="ConsoleFlexArea" id="ChildConsole2">
+        </section>
+
+    </div>
+
+    <h1>Create</h1>
+
+    <h4>StringCommand</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Command" class="control-label"></label>
+                    <input asp-for="Command" class="form-control" />
+                    <span asp-validation-for="Command" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+
+    <section class="ConsoleFlexArea">
+        <nav class="navbar" id="innerFlex">
+            <p><a class="Underline" id="ArticlesButton_Acomputerlanguage" onclick="MakeArticlesActive(1)">A computer language</a></p>
+            <p><a class="Underline" id="ArticlesButton_Buildinganoperatingsystem" onclick="MakeArticlesActive(2)">Building an operating system</a></p>
+            <p><a class="Underline" id="ArticlesButton_Creatingasoftwaresynthesizer" onclick="MakeArticlesActive(3)">Creating a software synthesizer</a></p>
+            <p><a class="Underline" id="ArticlesButton_Everything" onclick="MakeArticlesActive(4)">Everything</a></p>
+            <p><a class="Underline" id="ArticlesButton_Minimize" onclick="MakeArticlesActive(5)">Minimize</a></p>
+        </nav>
+    </section>
+
+    <div id="Articles">
+    </div>
+
+</body>

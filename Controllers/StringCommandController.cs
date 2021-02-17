@@ -23,7 +23,7 @@ namespace EricDeeTTSTS.Controllers
         // GET: StringCommand
         public async Task<IActionResult> Index()
         {
-            return View(await _context.StringCommand.ToListAsync()); /// Selects all from the specified table.
+            return View("~/Views/StringCommand/Index.cshtml", await _context.StringCommand.ToListAsync()); /// Selects all from the specified table.
         }
 
         /// GET: StringCommand/DisplaySearchForm

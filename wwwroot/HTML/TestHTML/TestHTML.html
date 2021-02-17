@@ -1,0 +1,462 @@
+﻿<div class="FlexibleArticles">
+
+    <article id="LanguageDev3">
+        <h3 class="Index"><u class="Index">A substantial update to the language</u></h3>
+        <p>
+            <time class="Dated" datetime="2021-01-17" title="2021-01-17" style="font-size: .66rem; padding: 3px;"><i>January 17, 2021 coded by Eric Dee</i></time>
+        </p>
+
+        <p>The entire Visual Studio C# project in the link below.</p>
+
+        <p>
+            <a href="https://github.com/EricDeeTTSTS/CS-TTSTSLanguage" target="_blank">Github repository</a>
+        </p>
+
+        <p>
+            <iframe src='../DisplayMedia/Diagrams/TTSTS Class Diagram.class.violet.html' width="100%" height="900px" style="background-color: #fff;"></iframe>
+        </p>
+
+        <p>
+            <iframe src='../DisplayMedia/Diagrams/TTSTS Sequence Diagram.seq.violet.html' width="100%" height="1800px" style="background-color: #fff;"></iframe>
+        </p>
+
+        <p>
+            I started working on some algorithms, which I had planned to focus on primarily, and began to realize that it was crucial to the presentation of
+            my site, and general message that I update the language development stages. I followed through with previous inklings, and restandardized my approach.
+            I've taken what was already done out of context, and re-appropriated it to use a more mathematical foundation.
+        </p>
+
+        <p>
+            So where do I begin? I removed all character logic checks, and replaced everything with ASCII decimal counters. This allows the program to count
+            every single character decimal value entered by a user, and run instructions based on what they say, by summing all concurrent values and subtracting
+            what has not already been defined as part of the language. Just like a human might do, the computer becomes capable of reading sentences backwards, or
+            finding patterns in the middle of a paragraph.
+        </p>
+
+        <p>
+            Now this doesn't mean that the program is finished. There are still flaws to this approach. I haven't implemented a method to ensure value order is
+            attained. That means if some smart person comes along and sums up decimal values in a certain way, they can still instruct the computer to do something
+            without actually stating the intended instruction, but these things take time. Even when you know what to do there's always a fair amount of steps to
+            get there.
+        </p>
+
+        <p>
+            How can that be resolved? I think I will go the route of counting periods, like the english language does, and for each sum between periods check for
+            certain orders incrementally; or I can use a less strict format, and combine the "complete" analyzer with a interpreter similar to the JavaScript one
+            that I wrote previously. This would allow me to call the interpreter when sections can't be deciphered, but not bother with it unless needed.
+        </p>
+
+        <p>Moving away from beginner topics:</p>
+
+        <p>
+            I wrote a lot of my past articles for the beginner, because when I started, I jumped straight into the hardest parts of programming. I felt the need
+            to make languages, and build an OS. I didn't care if it was going to be difficult. I got that done, and I am going to write better tutorials later for
+            beginners, but right now; I must address a topic I never would have been able to comprehend if I didn't take that leap.
+        </p>
+
+        <p>
+            Part 1, the precompiler:
+        </p>
+
+        <p>
+            This is the main section of C# code. It is the simplest in terms of line count, but by far the most complex. Everything is kept private for obvious
+            reasons, but remains static. Those obvious reasons are the fact that nothing above this is going to be accessed, and all of these fields cannot, and
+            will not ever become null. They are history trackers. If that were to change, the code would be updated to reflect that. The code now goes into an
+            input phase. Everything has been declared, and we see the "CompleteLexicalAnalizer" being instantiated. This thing is going to do all the work.
+            Everything else calls it to find out what values are associated with the strings. A program can request either a single string return value, or it
+            can insert a list, or enumerable and get many values.
+        </p>
+
+        <p>
+            <script src="https://gist.github.com/EricDeeTTSTS/b82f7dacea3f57650db6f8546d8dac1b.js"></script>
+        </p>
+
+        <p>
+            After instructions are received, you have to do something with it. So the program has been set with a summarizer, or a function (called SumOfAllParts)
+            that takes an input, and outputs the obvious sum. This is done using more than one class, as a Lexer is capable of being an interpreter. So that
+            means an interface must be built. The general LexicalAnalyzer follows, along with its "complete" counterpart thereafter. This allows me to provide
+            a base in which to use along side other objectives.
+        </p>
+
+        <p>
+            At this point we or the programmer enter a phase of "dynamic instruction". The code has to go somewhere with its sum. First what I needed to do, was
+            to take every character that wasn't needed, like I discussed in past posts, and just remove them. Based on their decimal value, they are removed,
+            and the counter winds up with an instruction value as a sum. This value is only partially unique. Technically you can add other decimals together to
+            obtain a certain value. This can easily be fixed though, with order checks. Since there are only so many possible outcomes, it's very easy to ensure;
+            in not so many steps, that your code runs efficiently. I will provide a method on how to do that. Since everything gets ignored that isn't a letter
+            anyways, there's hardly even that many combinations to worry about.
+        </p>
+
+        <p>
+            <script src="https://gist.github.com/EricDeeTTSTS/220f8f28d137e0dcb4546d4577578aa6.js"></script>
+        </p>
+
+        <p>
+            <script src="https://gist.github.com/EricDeeTTSTS/eb8be38c4e859b094734da09da1df48d.js"></script>
+        </p>
+
+        <p>
+            After you decide what to use as the key value; for example, 619 = "To blue", you can tie it to the method that you wrote in the DynamicInstructions
+            class. Since we've defined a dictionary there, it's going to just parse through the possible outcomes and see if yours is found.
+        </p>
+
+        <p>
+            <script src="https://gist.github.com/EricDeeTTSTS/76c1fa9537ceb5d30a0ff7a890c44f8a.js"></script>
+        </p>
+
+        <p>
+            That's it. It's done. You made a language. I'll provide additional techniques on creating more reliable mechanisms to ensure there are no errors, but
+            for now, pat yourself on the back.
+        </p>
+    </article>
+
+    <article id="LanguageDev2">
+        <h3><u class="Index">Improving the lexer</u></h3>
+        <p>
+            <time class="Dated" datetime="2021-01-13" title="2021-01-13" style="font-size: .66rem; padding: 3px;"><i>January 13, 2021 coded by Eric Dee</i></time>
+        </p>
+
+        <p>
+            I noticed that someone entered the command ",Get resume.", and it was causing the lexical analyzer to fail when characters were
+            entered at the start of a command. After a few hours and a bit of a struggle, I was able to update the system to ignore unrecognized
+            characters regardless of the order using ASCII codes. It needed to be done anyways. Now everything works as expected, and the user can
+            enter things like Hey! Make red, then end. Then make green. The program would then shift from red to green, and exit on green.
+            Alternatively, it would for example, not accept the instruction if the user were to enter Hey! Make red, then end. Then green.
+            It would only make red appear then exit, because that would be missing the "make" token on the second pass.
+        </p>
+
+        <p>
+            The correction code is found in this gist below. I still want to add decimal values between 90 and 122, but for now this works just fine, as I
+            have a lot of other things I want to present over the next few weeks first. Since it requires instructions to function and reduce the count
+            back to zero, non-alphabetical characters are ignored until something appropriate appears.
+        </p>
+
+        <p>
+            <script class="GithubGists" src="https://gist.github.com/EricDeeTTSTS/e9c92bd27f634dc627d226c409a307bc.js"></script>
+        </p>
+    </article>
+
+    <article id="Synth2">
+        <h3><u class="Index">Day 3 synth development, brief showcase</u></h3>
+        <p>
+            <time class="Dated" datetime="2021-01-11" title="2021-01-11" style="font-size: .66rem; padding: 3px;"><i>January 11, 2021 coded by Eric Dee referenced EETechStuff</i></time>
+        </p>
+
+        <p>
+            I was able to scrape together something useful in a couple of days. I included a reasonable explanation on sound generation
+            in my first post, so if you feel the need, then check that out <a href="#Synth1WaveExplanation">here</a>.
+        </p>
+
+        <p>
+            <a href="../DisplayMedia/Synthesizer Oscilloscope.PNG" target="_blank">
+                <img class="HomeReduced" src="../DisplayMedia/Synthesizer Oscilloscope.PNG" alt="For some reason, your browser did not load this image." />
+            </a>
+        </p>
+
+        <p>
+            <video width="300" height="200" controls>
+                <source src="../DisplayMedia/Videos/Synthesizer - Second Version.mp4" type="video/mp4">
+            </video>
+        </p>
+    </article>
+
+    <article id="LanguageDev1">
+        <h3><u class="Index">A skeleton for an interpreted language (written in JavaScript)</u></h3>
+        <p>
+            <time class="Dated" datetime="2021-01-09" title="2021-01-09" style="font-size: .66rem; padding: 3px;"><i>January 09, 2021 coded by Eric Dee</i></time>
+        </p>
+
+        <p>
+            <script src="https://gist.github.com/EricDeeTTSTS/37e069fa1fbb524451110620b5b68fbb.js"></script>
+        </p>
+
+        <p>
+            This has been written numerous times, and has gone through many iterations in multiple languages in order to make it
+            as simple as humanly possible. The snippet above shows the main function for the lexical analyzer (Lexer).
+            Upon receipt of user input, a build function is called. This can be done the same way in virtually all languages using
+            a string function. In C, that would be scanf, in C#, that would be Console.Read(). In Python that would be input(). In C++
+            that would be cin >>. There are many ways.
+        </p>
+
+        <p>
+            The build() function checks if user input was received. If true, a language map is called. This function does virtually all
+            of the work. It runs a loop. First it loads the user input string and gets its length to determine when the loop ends, and
+            if it has appropriately read all characters. It enters a do while loop (I use this over the while loop for break before make).
+            And it just keeps doing the same thing. It stores the first character from the input in a new array in order not to lose
+            valid information. This is almost the exact same thing as using Buffer.BlockCopy in the C# MemoryStream class.
+        </p>
+
+        <p>
+            As soon as the program encounters a whitespace, it breaks the loop. It also breaks the loop if a period is encountered,
+            because that means the sentence (instruction) ended. For null termination, an EmergencyExit variable has been declared,
+            and it increments with each iteration of the loop. If it reaches the emergency value (30 characters), the loop exits.
+            This number can be increased depending on programming needs, and will be increased as I add functions to allow for example,
+            declaration of variables, and mathematical operations.
+        </p>
+
+        <p>
+            The program then counts the amount of characters in that word, and runs the Lexer() function. This is where it scans through
+            character by character, every word in the program's "dictionary". As it finds letters in order, it generates tokens. If not,
+            it breaks the loop.
+        </p>
+
+        <p>
+            The same process happens and counts are compared against one another until no letters or characters are left, and at that
+            point, the process is finished. After each run of the Lexer, the program will enter into a parsing mode, to check if any
+            of its generated tokens match an order that causes an instruction to occur.
+        </p>
+
+        <p>
+            If you would like to see the full code example, right click on, and inspect this webpage. The file is named "site.js"
+            and is located in the wwwroot js folder.
+        </p>
+    </article>
+
+    <article id="Synth1">
+        <h3><u class="Index">Writing a synthesizer from scratch</u></h3>
+        <p>
+            <time class="Dated" datetime="2021-01-09" title="2021-01-09" style="font-size: .66rem; padding: 3px;"><i>January 09, 2021 coded by Eric Dee referenced G223 Productions, Microsoft Docs</i></time>
+        </p>
+
+        <p>
+            <a href="../DisplayMedia/Synthesizer Skeleton.PNG" target="_blank">
+                <img class="HomeReduced" src="../DisplayMedia/Synthesizer Skeleton.PNG" alt="For some reason, your browser did not load this image." />
+            </a>
+        </p>
+
+        <p>
+            <video width="300" height="200" controls>
+                <source src="../DisplayMedia/Videos/Synthesizer - First Version.mp4" type="video/mp4">
+            </video>
+        </p>
+
+        <p>
+            While browsing job postings I came across a software development job for audio production at a
+            VST development company. Given that I spent a lot of my free time over the past 9 years using
+            VSTS, I often wondered what it would take to make them. It was always a seemingly daunting
+            task. and just like OS development often has very poor online documentation. With my new
+            knowledge from OS development, I finally was able to get moving.
+        </p>
+
+        <p>
+            I see this as a very important step and partial to the kernel that I have been working on, as I
+            eventually need to develop audio methods for it. It's also a huge thing in data science...
+            being able to fully understand wave forms. Today I sat down and learned how to generate one using C#.
+        </p>
+
+        <p>
+            The program is initialized using a sample rate. I tried to explain this stuff as best I could,
+            because it takes a few years to really get a handle on it. This rate is more or less a ceiling
+            for a certain value, which sets inner sampling methods using 8 bit operations in such a way that it
+            allows each "block" of operations to fit within an amount of calculations per one wave oscillation (second) - hz, and to
+            define a factor for a wave type at a certain point in time. Some block types; for example PWM outcomes
+            have an unbalanced radius, which causes their inability to evenly fit into a 44100 block radius.
+        </p>
+
+        <p id="Synth1WaveExplanation">
+            If you take a look at the function to generate a sine wave, for example;
+            <script src="https://gist.github.com/EricDeeTTSTS/ec36c80933eb906ba3b9bba0216eb07e.js"></script>
+            You can see that ultimately, the computer is just told to generate a circle of a certain size.
+            Then it divides the circle into parts depnding on the sample rate, then it multiplies its first value
+            by the poisition. When position is used for x and/or y, a strict series of events occurs, and that just
+            depends on which calculation method you argue against PI (the circle) 2pi(r), or in this case frequency;
+            which is how many blocks are going to fit into the potential 44100 amount of samples.
+            This produces the result of a frequential radius and has both a negative and a positive pole.
+            As the position increases, the general sum of parts is closer to the sample rate; therefore, the total
+            position outcome decreases.
+        </p>
+
+        <p>
+            Then when you set up the sample rate in the sound buffer of memory, you instruct the system
+            to play those samples at a certain speed per every second. It gets 44100 parts to play, and they have
+            to be played within a certain amount of time for the wave to be produced accurately.
+        </p>
+
+        <p>
+            That is why when your CPU gets overloaded and you are listening to music the sound tends to distort,
+            or get really choppy; because the calculation is no longer being done on time, or some of the numbers
+            in the array are being skipped while the CPU tries to catch up with itself, or RAM is being overloaded.
+        </p>
+
+        <p>
+            Using the Math.Sin function, against Math.PI generates a series of incremental and decremental
+            numbers based on the position in time compared to the base "frequency" in such a way, so as to
+            develop an ellipse, or curvature. A more computational variation of sound, would be a triangular
+            wave, or an exact representation being a square wave. Something I also look forward to getting to.
+        </p>
+
+        <p>
+            After an iteration of 44100 (that's the length of the array), the program recurses, and begins
+            to truncate, in order to produce an array of readable bytes. Since values were required to exceed
+            255, they couldn't be translated unless truncation occurs. A byte array was defined, and the short
+            array is passed through the buffer class using the block copy method. What this does is copy
+            strictly byte per byte, so by using the short array as a source, and byte array as a destination,
+            the numbers can be copied over without the loss of data. Using the sizeof type operator just
+            doubles the length of the short array to accommodate for this change.
+        </p>
+
+        <p>
+            At this point, the sound wave has been written into RAM as a buffer to be passed to the sound card,
+            or whichever controller currently has precedence for the wave data. In this case, that is the
+            SoundPlayer class. The RAM location (memory stream) is set to zero, and the byte array is passed
+            to the player class. On key press, the sound is heard through the computer speakers.
+        </p>
+
+        <p>
+            Most of the actual sound stuff seems to be the easiest part. It was figuring out how to set up the
+            stream to accept the data that was difficult. Luckily, having spent so much time on disk interrupts,
+            I was able to get this done in a few hours with a few videos and some documentation online. This is
+            the format. I plan to make a very basic standalone synth app over the next few days, and look
+            forward to answering some of the questions I had over the years when I wasn't so sure of my capacity
+            for programming.
+        </p>
+    </article>
+
+    <article id="Kernel2">
+        <h3><u class="Index">Interpreting keys in the kernel and displaying the character + its decimal in binary</u></h3>
+        <p>
+            <time class="Dated" datetime="2021-01-03" title="2021-01-03" style="font-size: .66rem; padding: 3px;"><i>January 03, 2021 coded by Eric Dee</i></time>
+        </p>
+
+        <p>
+            <a href="../DisplayMedia/ConvertingBinary3.png" target="_blank">
+                <img class="HomeReduced" src="../DisplayMedia/ConvertingBinary3.png" alt="For some reason, your browser did not load this image." />
+            </a>
+        </p>
+
+        <p>
+            This section is more involved than just booting the computer. A predefined string was defined
+            which is empty to begin passing bytes to from int 22 (hex 0x16). On each interrupt, the computer
+            holds the key value in al, as per the 00h service (0) specified in ah. al is where the result is
+            placed. It continues to return and allow user input [gets a string], until an enter keypress is
+            found. When enter occurs, it is not added to the string. After the comparison to hex 0xd is found
+            to be true, the instruction pointer jmps to an interpreter code section, and restores the string
+            to si to reset its index. At this point, the computer compares the first character in the string
+            to the options that can be seen on the top of this page. When it finds a option which has been
+            programmed, it then jumps to the code block with which it has been associated.
+        </p>
+
+        <p>
+            <a href="../DisplayMedia/ConvertingBinary1.png" target="_blank">
+                <img class="HomeReduced" src="../DisplayMedia/ConvertingBinary1.png" alt="For some reason, your browser did not load this image." />
+            </a>
+        </p>
+
+        <p>
+            For the key binary code block, it begins by printing a few new lines using interrupt 0x10
+            (decimal 16), and prompts one last time for an input. This happens smoothly, and the prompt isn't
+            really seen. It just happens. After this, a predefined string of 8 bytes is loaded into si. Each
+            byte has a decimal value of 48 (character "0"). This is for representing 1 bit.
+        </p>
+
+        <p>
+            From here, I learned that converting to binary is surprisingly simple. It only took about 5-10
+            minutes to learn. The value in al is used as an argument in the binary converter. First the string
+            at index zero is given a value of 48. A comparison is made against 127 in al, which is the upper
+            ASCII limitation. Technically the value is 128 or 2 to the seventh power, but the comparison
+            isn't possible, as the decimal doesn't exist. ASCII stops at 127. If the value is greater, the
+            program exits, because that means there was an error, or some form of an overflow. If the flag
+            from the comparison is zero, the pointer will now jump to the Zero label.
+        </p>
+
+        <p>
+            <a href="../DisplayMedia/ConvertingBinary2.png" target="_blank">
+                <img class="HomeReduced" src="../DisplayMedia/ConvertingBinary2.png" alt="For some reason, your browser did not load this image." />
+            </a>
+        </p>
+
+        <p>
+            The index is incremented by one, and the process begins again. Only this time using 64 or 2 to
+            the power of 6. Each time this occurs, and the value in al is greater than or equal to the
+            exponential outcome, that exponential value is then subtracted from the current value in al. If
+            it was greater, a 1 is loaded into the location which the si register points to on the string.
+            From there, the pointer moves on and checks whether it is greater than each of the factors, writing
+            either a 1 or a zero into the byte array that is defined by the string. Finally it reaches the
+            zeroth power, where it can exit.
+        </p>
+    </article>
+
+    <article id="Kernel1">
+        <h3><u class="Index">Building the bootSector</u></h3>
+        <p>
+            <time class="Dated" datetime="2021-01-03" title="2021-01-03" style="font-size: .66rem; padding: 3px;"><i>January 03, 2021 coded by Eric Dee referenced Queso Feugo</i></time>
+        </p>
+
+        <p>
+            <a href="../DisplayMedia/bootSector.png" target="_blank"><img class="HomeReduced" src="../DisplayMedia/bootSector.png" alt="For some reason, your browser did not load this image." /></a>
+        </p>
+
+        <p>
+            I would like to denote that this was the most difficult task to undertake so far in my learning
+            how to develop a 16 bit kernel. It was extremely taxing locating good documentation anywhere, even
+            on OSdev.org, on how to simply exit the boot sector, and allocate, or access the drives.
+        </p>
+
+        <p>
+            This progress tracker will follow my Kernel and program development and all of it will be
+            presented in the flat assembly language. This is simply a personal project aimed at improving my
+            resume, and increasing my knowledge of computers.
+        </p>
+
+        <p>
+            It is important that any reader here to learn how to do this themselves is aware the information
+            I leave out, or explanations I do not include are there because the only real way to learn some of
+            this is through actual research. Just copying this down won't really get you anywhere.
+        </p>
+
+        <p>
+            Writing a Kernel isn't simple. There aren't a lot of easy to decipher guides.
+            This is how to jump out of the bootSector and into the Kernel, where you can begin to write
+            limitless programs. Please take note of the SectorFlags label. This area denotes each sector
+            of the harddrive, and what the computer is to do with it. When you use a hex interrupt 13
+            (19 in decimal), the computer is instructed to access all available drives to it. When this
+            occurs, the arguments or flags connect the specified drive, and instruct it to load or read
+            data from the locations given in each register. Every drive as of right now has a number of
+            heads, a number of cylinders, and a number of sectors. Every sector can hold 512 bytes, which is
+            the same size as the bootLoader. Everytime a binary, or assembled file exceeds this value, the
+            programmer is required to provide additional space, or in this case another sector.
+            There are approximately 2 billion sectors per 1TB of drive space.
+        </p>
+
+        <h3>How to get the data into sectors from a bootLoader</h3>
+        <p>
+            This was the hardest part for me. Finding a way to do this that didn't involve a high level
+            language. The answer is very minimal. Each binary file must be loaded onto the computers drive in
+            order. Each sector then becomes accessible by the read method or interrupt. On QEMU, or Bochs, the
+            kernel and all included files thereafter  can be found after concatenating the binary files into a
+            single .bin. Here is an example of a make file in Linux to do this in one line on the terminal.
+        </p>
+
+        <p>
+            <a href="../DisplayMedia/MakeFileKernel.png" target="_blank"><img class="HomeReduced" src="../DisplayMedia/MakeFileKernel.png" alt="For some reason, your browser did not load this image." /></a>
+        </p>
+
+        <p>
+            Now that I can load this on an emulator, at some point, I will need to learn a way to physically
+            push the data onto a segment, in order to boot a real computer. Presumably it works the same, and
+            a floppy or bootable item holds a concatenated file to begin with. The kernel can basically exist
+            anywhere, as long as it is accessible, and can be loaded into RAM, to then be written to a drive.
+            In this case, the bootLoader (bootSector.asm) is found in sector 1. Everything starts there. The
+            file table is placed directly into the sector following the bootSector (2), and that placed the
+            kernel in sector number 3.
+        </p>
+
+        <h3>When the sectors are read</h3>
+        <p>
+            When the sectors are read, the es register holds a memory location in RAM. It is this location
+            that the interrupt will cause the computer to "write" to. Now that the drive has been read, and
+            RAM has been updated to permanently hold the code for the kernel, it can always be accessed, unless
+            it is overwritten, or the computer is turned off. This series of instructions will happen every time
+            the computer is turned on with this specific bootLoader.
+        </p>
+
+        <h3>Jumping to the kernel.</h3>
+        <p>
+            At this point, the computer just needs a jmp instruction pointing to the address in RAM where
+            the kernel was loaded to. The bootLoader can still be accessed for warm resets using its origin of
+            0x7c00, but it isn't needed after this point. One of the most difficult hurdles, and seemingly well
+            kept secrets is now over, and the programmer can begin to write with virtually limitless freedom,
+            given that they still operate within the boundaries of the computers RAM, of course.
+        </p>
+    </article>
+</div>

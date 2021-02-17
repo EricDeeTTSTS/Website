@@ -1,420 +1,155 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Canvas lander";
 }
 
-<link href="~/css/site.css" rel="stylesheet" runat="server" />
-<script src="/js/site.js"></script>
-<datalist id="Syntax">
-    <option value="View history." />
-    <option value="Get index." />
-    <option value="Get resume." />
-    <option value="Get projects." />
-    <option value="Get contact information." />
-    <option value="Make red." />
-    <option value="Make blue." />
-    <option value="Make gray." />
-    <option value="Make pink." />
-    <option value="Make black." />
-    <option value="Make brown." />
-    <option value="Make green." />
-    <option value="Make white." />
-    <option value="Make orange." />
-    <option value="Make purple." />
-    <option value="Make yellow." />
-</datalist>
+<!-- 2-5-2021
+Author: Eric Dee
+http://EricDeeTTSTS.com/ -->
 
-<div class="text-center">
-    <h1 class="display-4">Welcome to this website.</h1>
-    <p>Navigate to enter a command...</p>
-    <br />
-    <br />
-    <br />
-    <input class="ss" list="Syntax" type="text" id="JSInstructionString" placeholder="Make gray." />
-    <button class="tt btn btn-primary" onclick="Build()">Build (press enter)</button>
-    <br />
-</div>
-<br />
-<br />
-<br />
-<body onload="LoadActive(1)">
+<head>
+    <script src="~/js/Interpreter.js"></script>
+    <link href="~/css/boot.css" rel="stylesheet" runat="server" />
+</head>
+
+<!--
+<canvas class="TrailCanvasTop"></canvas>
+<script src="~/CanvasDrawing/Eyes.js"></script>
+    -->
+
+<body>
+
     <header>
-        <!-- 1-3-2021
-        Author: Eric Dee
-        http://EricDeeTTSTS.com/ -->
         <meta charset="uft-8" />
         <meta name="author" content="Eric Dee">
-        <meta name="description" content="Portfolio">
-        <section>
-            <h2>How to use it.</h2>
-            <article>
-                <p>
-                    All of the pages are loaded on demand as a user instruction. Just type <span style="color:#1b6ec2">get Resume</span>, 
-                    <span style="color:#1b6ec2">get Projects</span>, <span style="color:#1b6ec2">get Contact Info</span>, or
-                    <span style="color:darkred">view history</span> to see those pages. The website will send your message to a lexer to 
-                    first check if it contains a known word, then parse the command to generate tokenized actions, then JavaScript sends those 
-                    tokens to a C# indexer on the server. You can do things like change its color, and pretty soon create your own variables and 
-                    add them together. Each command you send is stored in a SQL database, and retrieved by a bot, then sent as a tweet using the Twitter 
-                    API and TweetSharp system libraries. Stay tuned.
-                </p>
-            </article>
-
-            <h2>Planned features.</h2>
-            <article>
-                <p>
-                    Began adding feature for JavaScript to store user variables and their locations clientside, which will allow them to
-                    write a simple function onto a text form to instantiate their own variables and add them together, then print the result onto
-                    an html page.
-                </p>
-            </article>
-
-            <h2>A side topic.</h2>
-            <article>
-                <p>
-                    This showcases my personal ideas and development, along with school projects for the Software Development Associate degree
-                    at North Central Technical College. They include Database Concepts, Software Development, and Web Design.
-                </p>
-            </article>
-        </section>
+        <meta name="description" content="Display of intent.">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </header>
 
-    <section class="Home">
-        <div class="BodyFlexBox">
-            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-                <div class="container Blue">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                        <ul class="navbar-nav flex-grow-1">
-                            <li class="nav-item">
-                                <!--Directly below is a navigation link-->
-                                <a class="nav-link text-dark Underline" id="a1" onclick="MakeActive(1)">All</a>
-                            </li>
-                            <li class="nav-item">
-                                <!--Directly below is a navigation link-->
-                                <a class="nav-link text-dark Underline" id="a2" onclick="MakeActive(2)">Defining a computer language</a>
-                            </li>
-                            <li class="nav-item">
-                                <!--Directly below is a navigation link-->
-                                <a class="nav-link text-dark Underline" id="a3" onclick="MakeActive(3)">OS Development</a>
-                            </li>
-                            <li class="nav-item">
-                                <!--Directly below is a navigation link-->
-                                <a class="nav-link text-dark Underline" id="a4" onclick="MakeActive(4)">Programming a synthesizer</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-            <style>
-                .Underline {
-                    color: #acacac;
-                    padding: 6px;
-                }
+    <datalist id="Instructions">
+        <option value="go index" />
+        <option value="go projects" />
+        <option value="view history" />
+        <option value="view roadmap" />
+        <option value="view sourcecode" />
+        <option value="reset" />
+        <option value="to red" />
+        <option value="to blue" />
+        <option value="to gray" />
+        <option value="to pink" />
+        <option value="to black" />
+        <option value="to brown" />
+        <option value="to green" />
+        <option value="to white" />
+        <option value="to orange" />
+        <option value="to purple" />
+    </datalist>
 
-                .Underline:hover {
-                    border-bottom: 3px solid #333;
-                    padding: 3px;
-                }
+    <div class="TopNavigationLink">
 
-                .Active {
-                    border-bottom: 3px solid #333;
-                    padding: 9px;
-                }
-            </style>
+        <p class="Centered"><a class="TopSideIndexLinks" asp-area="" asp-controller="Home" asp-action="Index">&#8767</a></p>
 
-            <article id="LanguageDev2">
-                <h3 class="Index">Improving the lexer</h3>
-                <time class="Dated" datetime="2021-01-13" title="2021-01-13" style="font-size: .66rem; padding: 3px;"><i>January 13, 2021 coded by Eric Dee</i></time>
-                <br />
-                <p>
-                    I noticed that someone entered the command ",Get resume.", and it was causing the lexical analyzer to fail when characters were
-                    entered at the start of a command. After a few hours and a bit of a struggle, I was able to update the system to ignore unrecognized
-                    characters regardless of the order using ASCII codes. It needed to be done anyways. Now everything works as expected, and the user can
-                    enter things like Hey! Make red, then end. Then make green. The program would then shift from red to green, and exit on green.
-                    Alternatively, it would for example, not accept the instruction if the user were to enter Hey! Make red, then end. Then green.
-                    It would only make red appear then exit, because that would be missing the "make" token on the second pass.
+    </div>
+
+    <canvas class="SineCanvasTop" width="100%"></canvas>
+    <canvas class="SineCanvasTopTwo"></canvas>
+    <script src="~/CanvasDrawing/SineWaves.js"></script>
+    <button class="GenerateTreeButton">Generate Random tree</button>
+    <canvas class="TreeCanvasLeftTop"></canvas>
+    <canvas class="TreeCanvasRightTop"></canvas>
+    <script src="~/CanvasDrawing/FractalTrees.js"></script>
+
+    <div class="FlexibleInstructionsContainer">
+
+        <section class="MainMessage">
+            <p class="MainMessage">Operation successful! Enter an instruction.</p>
+        </section>
+
+        <div class="FlexibleInstructionsArea">
+
+            <section class="InstructionType">
+                <h2>Navigation:</h2>
+                <p class="Instructions">
+                    go index<br />
+                    go projects<br />
+                    view history<br />
+                    view roadmap<br />
+                    view sourcecode<br />
                 </p>
+            </section>
 
-                <p>
-                    The correction code is found in this gist below. I still want to add decimal values between 90 and 122, but for now this works just fine, as I
-                    have a lot of other things I want to present over the next few weeks first. Since it requires instructions to function and reduce the count
-                    back to zero, non-alphabetical characters are ignored until something appropriate appears.
+            <section class="InstructionType">
+                <h2>Restarting:</h2>
+                <p class="Instructions">
+                    reset<br />
                 </p>
+            </section>
 
-                <script src="https://gist.github.com/EricDeeTTSTS/e9c92bd27f634dc627d226c409a307bc.js"></script>
-            </article>
-
-            <article id="Synth2">
-                <h3 class="Index">Day 3 synth development, brief showcase</h3>
-                <time class="Dated" datetime="2021-01-11" title="2021-01-11" style="font-size: .66rem; padding: 3px;"><i>January 11, 2021 coded by Eric Dee referenced EETechStuff</i></time>
-                <br />
-                <p>
-                    I was able to scrape together something useful in a couple of days as expected. It turns out it's not too hard to make a
-                    2d oscilloscope that follows synth events. I intend to write up a detailed report on how to do all of this, but for now
-                    I need to get some rest. I had a blast making this work, and there's still a lot of features I want to include.
-                    <br />
-                    <br />
-                    <a href="~/Images/Synthesizer Oscilloscope.PNG" target="_blank">
-                        <img class="HomeReduced" src="~/Images/Synthesizer Oscilloscope.PNG" alt="For some reason, your browser did not load this image." />
-                    </a>
-
-                    <video width="300" height="200" controls>
-                        <source src="~/Videos/Synthesizer - Second Version.mp4" type="video/mp4">
-                    </video>
+            <section class="InstructionType">
+                <h2>Styling:</h2>
+                <p class="Instructions">
+                    to red<br />
+                    to blue<br />
+                    to gray<br />
+                    to pink<br />
+                    to black<br />
+                    to brown<br />
+                    to green<br />
+                    to white<br />
+                    to orange<br />
+                    to purple<br />
                 </p>
-            </article>
-
-            <article id="LanguageDev1">
-                <h3 class="Index">A skeleton for an interpreted language (written in JavaScript)</h3>
-                <time class="Dated" datetime="2021-01-09" title="2021-01-09" style="font-size: .66rem; padding: 3px;"><i>January 09, 2021 coded by Eric Dee</i></time>
-                <br />
-                <script src="https://gist.github.com/EricDeeTTSTS/37e069fa1fbb524451110620b5b68fbb.js"></script>
-                <p>
-                    This has been written numerous times, and has gone through many iterations in multiple languages in order to make it
-                    as simple as humanly possible. The snippet above shows the main function for the lexical analyzer (Lexer).
-                    Upon receipt of user input, a build function is called. This can be done the same way in virtually all languages using
-                    a string function. In C, that would be scanf, in C#, that would be Console.Read(). In Python that would be input(). In C++
-                    that would be cin >>. There are many ways.
-                </p>
-
-                <p>
-                    The build() function checks if user input was received. If true, a language map is called. This function does virtually all
-                    of the work. It runs a loop. First it loads the user input string and gets its length to determine when the loop ends, and
-                    if it has appropriately read all characters. It enters a do while loop (I use this over the while loop for break before make).
-                    And it just keeps doing the same thing. It stores the first character from the input in a new array in order not to lose
-                    valid information. This is almost the exact same thing as using Buffer.BlockCopy in the C# MemoryStream class.
-                </p>
-
-                <p>
-                    As soon as the program encounters a whitespace, it breaks the loop. It also breaks the loop if a period is encountered,
-                    because that means the sentence (instruction) ended. For null termination, an EmergencyExit variable has been declared,
-                    and it increments with each iteration of the loop. If it reaches the emergency value (30 characters), the loop exits.
-                    This number can be increased depending on programming needs, and will be increased as I add functions to allow for example,
-                    declaration of variables, and mathematical operations.
-                </p>
-
-                <p>
-                    The program then counts the amount of characters in that word, and runs the Lexer() function. This is where it scans through
-                    character by character, every word in the program's "dictionary". As it finds letters in order, it generates tokens. If not,
-                    it breaks the loop.
-                </p>
-
-                <p>
-                    The same process happens and counts are compared against one another until no letters or characters are left, and at that
-                    point, the process is finished. After each run of the Lexer, the program will enter into a parsing mode, to check if any
-                    of its generated tokens match an order that causes an instruction to occur.
-                </p>
-
-                <p>
-                    If you would like to see the full code example, right click on, and inspect this webpage. The file is named "site.js"
-                    and is located in the wwwroot js folder.
-                </p>
-            </article>
-
-            <article id="Synth1">
-                <h3 class="Index">Writing a synthesizer from scratch</h3>
-                <time class="Dated" datetime="2021-01-09" title="2021-01-09" style="font-size: .66rem; padding: 3px;"><i>January 09, 2021 coded by Eric Dee referenced G223 Productions, Microsoft Docs</i></time>
-                <br />
-                <a href="/Images/Synthesizer Skeleton.PNG" target="_blank">
-                    <img class="HomeReduced" src="~/Images/Synthesizer Skeleton.PNG" alt="For some reason, your browser did not load this image." />
-                </a>
-
-                <video width="300" height="200" controls>
-                    <source src="~/Videos/Synthesizer - First Version.mp4" type="video/mp4">
-                </video>
-                <p></p>
-                <p>
-                    While browsing job postings I came across a software development job for audio production at a
-                    VST development company. Given that I spent a lot of my free time over the past 9 years using
-                    VSTS, I often wondered what it would take to make them. It was always a seemingly daunting
-                    task. and just like OS development often has very poor online documentation. With my new
-                    knowledge from OS development, I finally was able to get moving.
-                </p>
-
-                <p>
-                    I see this as a very important step and partial to the kernel that I have been working on, as I
-                    eventually need to develop audio methods for it. It's also a huge thing in data science...
-                    being able to fully understand wave forms. Today I sat down and learned how to generate one using C#.
-                </p>
-
-                <p>
-                    The program is initialized using a sample rate. I won't go in depth on some of this stuff,
-                    because it takes a few years to really get a handle on it. This rate is more or less a ceiling
-                    for a certain value, which sets sampling methods using 8 bit operations in such a way that it
-                    allows each "block" of operations to fit within an amount of calculations per one second.
-                </p>
-
-                <p>
-                    Using the Math.Sin function, against Math.PI generates a series of incremental and decremental
-                    numbers based on the position in time compared to the base "frequency" in such a way, so as to
-                    develop an ellipse, or curvature. A more computational variation of sound, would be a triangular
-                    wave, or an exact representation being a square wave. Something I also look forward to getting to.
-                </p>
-
-                <p>
-                    After an iteration of 44100 (that's the length of the array), the program recurses, and begins
-                    to truncate, in order to produce an array of readable bytes. Since values were required to exceed
-                    255, they couldn't be translated unless truncation occurs. A byte array was defined, and the short
-                    array is passed through the buffer class using the block copy method. What this does is copy
-                    strictly byte per byte, so by using the short array as a source, and byte array as a destination,
-                    the numbers can be copied over without the loss of data. Using the sizeof type operator just
-                    doubles the length of the short array to accommodate for this change.
-                </p>
-
-                <p>
-                    At this point, the sound wave has been written into RAM as a buffer to be passed to the sound card,
-                    or whichever controller currently has precedence for the wave data. In this case, that is the
-                    SoundPlayer class. The RAM location (memory stream) is set to zero, and the byte array is passed
-                    to the player class. On key press, the sound is heard through the computer speakers.
-                </p>
-
-                <p>
-                    Most of the actual sound stuff seems to be the easiest part. It was figuring out how to set up the
-                    stream to accept the data that was difficult. Luckily, having spent so much time on disk interrupts,
-                    I was able to get this done in a few hours with a few videos and some documentation online. This is
-                    the format. I plan to make a very basic standalone synth app over the next few days, and look
-                    forward to answering some of the questions I had over the years when I wasn't so sure of my capacity
-                    for programming.
-                </p>
-            </article>
-
-            <article id="Kernel1">
-                <h3 class="Index">Interpreting keys in the kernel and displaying the character + its decimal in binary</h3>
-                <time class="Dated" datetime="2021-01-03" title="2021-01-03" style="font-size: .66rem; padding: 3px;"><i>January 03, 2021 coded by Eric Dee</i></time>
-                <br />
-                <a href="~/Images/ConvertingBinary3.png" target="_blank">
-                    <img class="HomeReduced" src="~/Images/ConvertingBinary3.png" alt="For some reason, your browser did not load this image." />
-                </a>
-                <br />
-                <p>
-                    This section is more involved than just booting the computer. A predefined string was defined
-                    which is empty to begin passing bytes to from int 22 (hex 0x16). On each interrupt, the computer
-                    holds the key value in al, as per the 00h service (0) specified in ah. al is where the result is
-                    placed. It continues to return and allow user input [gets a string], until an enter keypress is
-                    found. When enter occurs, it is not added to the string. After the comparison to hex 0xd is found
-                    to be true, the instruction pointer jmps to an interpreter code section, and restores the string
-                    to si to reset its index. At this point, the computer compares the first character in the string
-                    to the options that can be seen on the top of this page. When it finds a option which has been
-                    programmed, it then jumps to the code block with which it has been associated.
-                </p>
-
-                <a href="~/Images/ConvertingBinary1.png" target="_blank">
-                    <img class="HomeReduced" src="~/Images/ConvertingBinary1.png" alt="For some reason, your browser did not load this image." />
-                </a>
-                <br />
-                <p>
-                    For the key binary code block, it begins by printing a few new lines using interrupt 0x10
-                    (decimal 16), and prompts one last time for an input. This happens smoothly, and the prompt isn't
-                    really seen. It just happens. After this, a predefined string of 8 bytes is loaded into si. Each
-                    byte has a decimal value of 48 (character "0"). This is for representing 1 bit.
-                </p>
-
-                <p>
-                    From here, I learned that converting to binary is surprisingly simple. It only took about 5-10
-                    minutes to learn. The value in al is used as an argument in the binary converter. First the string
-                    at index zero is given a value of 48. A comparison is made against 127 in al, which is the upper
-                    ASCII limitation. Technically the value is 128 or 2 to the seventh power, but the comparison
-                    isn't possible, as the decimal doesn't exist. ASCII stops at 127. If the value is greater, the
-                    program exits, because that means there was an error, or some form of an overflow. If the flag
-                    from the comparison is zero, the pointer will now jump to the Zero label.
-                </p>
-
-                <a href="~/Images/ConvertingBinary2.png" target="_blank">
-                    <img class="Home" src="~/Images/ConvertingBinary2.png" alt="For some reason, your browser did not load this image." />
-                </a>
-                <br />
-                <br />
-                <p>
-                    The index is incremented by one, and the process begins again. Only this time using 64 or 2 to
-                    the power of 6. Each time this occurs, and the value in al is greater than or equal to the
-                    exponential outcome, that exponential value is then subtracted from the current value in al. If
-                    it was greater, a 1 is loaded into the location which the si register points to on the string.
-                    From there, the pointer moves on and checks whether it is greater than each of the factors, writing
-                    either a 1 or a zero into the byte array that is defined by the string. Finally it reaches the
-                    zeroth power, where it can exit.
-                </p>
-            </article>
-
-            <article id="Kernel2">
-                <h3 class="Index">Building the bootSector</h3>
-                <time class="Dated" datetime="2021-01-03" title="2021-01-03" style="font-size: .66rem; padding: 3px;"><i>January 03, 2021 coded by Eric Dee referenced Queso Feugo</i></time>
-                <br />
-                <a href="/Images/bootSector.png" target="_blank"><img class="HomeReduced" src="/Images/bootSector.png" alt="For some reason, your browser did not load this image." /></a>
-                <br />
-                <p>
-                    I would like to denote that this was the most difficult task to undertake so far in my learning
-                    how to develop a 16 bit kernel. It was extremely taxing locating good documentation anywhere, even
-                    on OSdev.org, on how to simply exit the boot sector, and allocate, or access the drives.
-                </p>
-
-                <p>
-                    This progress tracker will follow my Kernel and program development and all of it will be
-                    presented in the flat assembly language. This is simply a personal project aimed at improving my
-                    resume, and increasing my knowledge of computers.
-                </p>
-
-                <p>
-                    It is important that any reader here to learn how to do this themselves is aware the information
-                    I leave out, or explanations I do not include are there because the only real way to learn some of
-                    this is through actual research. Just copying this down won't really get you anywhere.
-                </p>
-
-                <p>
-                    Writing a Kernel isn't simple. There aren't a lot of easy to decipher guides.
-                    This is how to jump out of the bootSector and into the Kernel, where you can begin to write
-                    limitless programs. Please take note of the SectorFlags label. This area denotes each sector
-                    of the harddrive, and what the computer is to do with it. When you use a hex interrupt 13
-                    (19 in decimal), the computer is instructed to access all available drives to it. When this
-                    occurs, the arguments or flags connect the specified drive, and instruct it to load or read
-                    data from the locations given in each register. Every drive as of right now has a number of
-                    heads, a number of cylinders, and a number of sectors. Every sector can hold 512 bytes, which is
-                    the same size as the bootLoader. Everytime a binary, or assembled file exceeds this value, the
-                    programmer is required to provide additional space, or in this case another sector.
-                    There are approximately 2 million sectors per 1TB of drive space.
-                </p>
-
-                <h3>How to get the data into sectors from a bootLoader</h3>
-                <p>
-                    This was the hardest part for me. Finding a way to do this that didn't involve a high level
-                    language. The answer is very minimal. Each binary file must be loaded onto the computers drive in
-                    order. Each sector then becomes accessible by the read method or interrupt. On QEMU, or Bochs, the
-                    kernel and all included files thereafter  can be found after concatenating the binary files into a
-                    single .bin. Here is an example of a make file in Linux to do this in one line on the terminal.
-                </p>
-
-                <a href="/Images/MakeFileKernel.png" target="_blank"><img class="HomeReduced" src="/Images/MakeFileKernel.png" alt="For some reason, your browser did not load this image." /></a>
-                <br />
-                <p>
-                    Now that I can load this on an emulator, at some point, I will need to learn a way to physically
-                    push the data onto a segment, in order to boot a real computer. Presumably it works the same, and
-                    a floppy or bootable item holds a concatenated file to begin with. The kernel can basically exist
-                    anywhere, as long as it is accessible, and can be loaded into RAM, to then be written to a drive.
-                    In this case, the bootLoader (bootSector.asm) is found in sector 1. Everything starts there. The
-                    file table is placed directly into the sector following the bootSector (2), and that placed the
-                    kernel in sector number 3.
-                </p>
-
-                <h3>When the sectors are read</h3>
-                <p>
-                    When the sectors are read, the es register holds a memory location in RAM. It is this location
-                    that the interrupt will cause the computer to "write" to. Now that the drive has been read, and
-                    RAM has been updated to permanently hold the code for the kernel, it can always be accessed, unless
-                    it is overwritten, or the computer is turned off. This series of instructions will happen every time
-                    the computer is turned on with this specific bootLoader.
-                </p>
-
-                <h3>Jumping to the kernel.</h3>
-                <p>
-                    At this point, the computer just needs a jmp instruction pointing to the address in RAM where
-                    the kernel was loaded to. The bootLoader can still be accessed for warm resets using its origin of
-                    0x7c00, but it isn't needed after this point. One of the most difficult hurdles, and seemingly well
-                    kept secrets is now over, and the programmer can begin to write with virtually limitless freedom,
-                    given that they still operate within the boundaries of the computers RAM, of course.
-                </p>
-            </article>
+            </section>
         </div>
-    </section>
+    </div>
+
+    <input class="KeyboardInput" id="KeyboardInput" Type="text" placeholder="to green" list="Instructions" />
+
+    <img class="UnderInput" src="../DisplayMedia/UnderInput.png" />
+
+    <div class="ColorBorder">
+
+        <div class="FlexibleArticles">
+            <section class="ArticlesArrayFlexible">
+                <h3><a class="UnstyledLink" asp-controller="Home" asp-action="Projects">See my projects.</a></h3>
+                <a asp-area="" asp-controller="Home" asp-action="Projects">
+                    <img class="ArticleImages" src="~/DisplayMedia/Capture.png" alt="Sorry, your browser did not display this image for some reason." />
+                </a>
+            </section>
+            <section class="ArticlesArrayFlexible">
+                <h3><a class="UnstyledLink" asp-controller="Home" asp-action="Sourcecode">View my source code.</a></h3>
+                <a class="UnstyledLink" asp-controller="Home" asp-action="Sourcecode">
+                    <img class="ArticleImages" src="~/DisplayMedia/CodeExample2.png" alt="Sorry, your browser did not display this image for some reason." />
+                </a>
+            </section>
+            <section class="ArticlesLinksFlexible">
+                <section class="NoMobileDisplay">
+                    <h3 class="ContentDisplay">Explore computer theory concepts</h3>
+                    <p><a class="ArticlesLink" href="~/TextForArticleConversion/Acomputerlanguage.html">A computer language</a></p>
+                    <p><a class="ArticlesLink" href="/TextForArticleConversion/Buildinganoperatingsystem.html">Building an operating system</a></p>
+                    <p class="Break"><a class="ArticlesLink" href="/TextForArticleConversion/Creatingasoftwaresynthesizer.html">Creating a software synthesizer</a></p>
+                    <h3 class="ContentDisplay">View the whole collection</h3>
+                    <p><a class="ArticlesLink" href="/TextForArticleConversion/Allarticles.html">Everything</a></p>
+                </section>
+            </section>
+        </div>
+
+    </div>
+
+    <div class="FooterColor">
+        <footer>
+            <div class="Copyright">
+                &copy; 2021 EricDeeTTSTS.com - <a class="Copyright" asp-controller="Home" asp-action="Privacy">privacy policy.</a>
+            </div>
+        </footer>
+    </div>
+
 </body>
-<script src="/js/KeyUp.js"></script>
+
+<script>
+    document.getElementById("KeyboardInput").addEventListener("keyup", function (event) {
+        if (event.keyCode === 13) {
+            Build();
+        }
+    });
+</script>

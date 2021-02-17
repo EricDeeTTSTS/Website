@@ -5,8 +5,6 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace EricDeeTTSTS.Controllers
 {
@@ -59,10 +57,8 @@ namespace EricDeeTTSTS.Controllers
             this.pageViews = new List<string>();
             this.pageViews.Add("Index");
             this.pageViews.Add("Privacy");
-            this.pageViews.Add("Resume");
             this.pageViews.Add("Projects");
-            this.pageViews.Add("ContactInfo");
-            this.pageViews.Add("RedirectToStringCommand");
+            this.pageViews.Add("~/Views/Reroutes/GoToCommandWall.cshtml");
             this.consumerKey = "";
             this.consumerKeySecret = "";
             this.accessToken = "";
@@ -106,9 +102,7 @@ namespace EricDeeTTSTS.Controllers
 
         private string ConnectToDataBase()
         {
-            string connectionString = @"";
-            string connectionStringFTP = @"";
-            return connectionStringFTP;
+            return @"";
         }
 
         private string QueryInstructionToDatabase(string JSString)
@@ -129,37 +123,35 @@ namespace EricDeeTTSTS.Controllers
             if (JSString != null)
             {
                 string tweet = this.QueryInstructionToDatabase(JSString);
-                tweet += " " + "Command: " + JSString;
-                this.MediaBot.DefineTweet("Identity: " + tweet);
+                //               tweet += " " + "Command: " + JSString;
+                //               this.MediaBot.DefineTweet("Identity: " + tweet);
             }
+
             this.NavigatorInput(JSInput); /// Checks from Javascript interpreter.
             return View(this.PageView);
-        }
-
-        public IActionResult Privacy()
-        {
-            return View("Privacy");
-        }
-
-        public IActionResult Resume()
-        {
-            return View("Resume");
-        }
-
-        public IActionResult Projects()
-        {
-            return View("Projects");
-        }
-
-        public IActionResult ContactInfo()
-        {
-            return View("ContactInfo");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        /* Manual URL entry controls */
+
+        public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        public IActionResult Projects()
+        {
+            return View();
+        }
+
+        public IActionResult Sourcecode()
+        {
+            return Redirect("https://github.com/EricDeeTTSTS");
         }
     }
 }

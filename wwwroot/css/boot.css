@@ -1,0 +1,1160 @@
+/* Utility */
+html {
+    font-family: Monaco, monospace;
+    font-size: 1rem;
+    color: #000000;
+    overflow-x: hidden;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+canvas.SineCanvasTop {
+    position: absolute;
+    top: 36px;
+}
+
+canvas.TreeCanvasLeftTop {
+    position: absolute;
+    top: 360px;
+    background: #123123;
+    left: calc(50% - 360px);
+}
+
+canvas.TreeCanvasRightTop {
+    position: absolute;
+    top: 360px;
+    background: #369369;
+    left: calc(50%);
+}
+
+button {
+    position: absolute;
+    top: 270px;
+    left: 0;
+    left: 50%;
+    z-index: 10;
+    outline: none;
+    border: none;
+    transform: translate(-50%, 0);
+    padding: 30px, 30px;
+    border-radius: 0;
+    background: brown;
+    color: #ffffff;
+    font-size: 27px;
+}
+
+div#InputFiller {
+    position: absolute;
+    top: 270px;
+    bottom: 360px;
+}
+
+p.ArticleUnavailable {
+    position: absolute;
+    top: 36px;
+}
+
+body {
+    min-height: 100vh;
+}
+
+h1, h2 {
+    font-size: 18px;
+}
+
+h3 {
+    font-size: 15px;
+    margin-bottom: 9px;
+    color: #369369;
+}
+
+    h3.ContentDisplay {
+        text-decoration: underline;
+    }
+
+    h3.ProjectIdentifiers {
+        margin-top: 9px;
+        margin-bottom: 9px;
+    }
+
+p.Break {
+    margin-bottom: 9px;
+}
+/* Top Link Navigation */
+div.TopNavigationLink {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 36px;
+    background-color: #123369;
+}
+
+div.TopNavigationLinkArticles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 36px;
+    width: 270px;
+    background-color: #123369;
+    z-index: -1;
+}
+
+a.TopSideIndexLinks {
+    position: absolute;
+    top: 3px;
+    font-size: 27px;
+    text-decoration: none;
+    color: #ffffff;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+a.TopSideIndexLinksArticles {
+    position: absolute;
+    top: 3px;
+    font-size: 27px;
+    text-decoration: none;
+    color: #ffffff;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+p.Centered {
+    text-align: center;
+}
+/* Below Top Navigation */
+div.BelowNavigation {
+    position: absolute;
+    top: 36px;
+    margin-left: 9px;
+    margin-right: 9px;
+}
+
+div.FlexibleInstructionsContainer {
+    position: absolute;
+    top: 720px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+p.MainMessage {
+    text-align: center;
+    text-decoration: underline;
+    color: black;
+}
+
+p.Instructions {
+    color: #123369;
+}
+
+div.FlexibleInstructionsArea {
+    display: flex;
+    justify-content: center;
+}
+
+section.InstructionType {
+    margin: 27px;
+}
+/**/ /* Keyboard And Button Box */
+input.KeyboardInput {
+    position: absolute;
+    height: 27px;
+    width: 66.666vw;
+    top: 1001px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1rem;
+}
+
+    input.KeyboardInput:focus {
+        outline: none;
+    }
+
+    input.KeyboardInput::placeholder {
+        font-size: 18px;
+    }
+
+input.KeyboardInputPrivacy {
+    position: absolute;
+    height: 27px;
+    width: 66.666vw;
+    top: 360px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1rem;
+}
+
+    input.KeyboardInputPrivacy:focus {
+        outline: none;
+    }
+
+    input.KeyboardInputPrivacy::placeholder {
+        font-size: 18px;
+    }
+/* Under Input */
+img.UnderInput {
+    position: absolute;
+    top: 1028px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+img.UnderInputPrivacy {
+    position: absolute;
+    top: 387px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+/* Color Border Start */
+div.ColorBorder {
+    position: absolute;
+    top: 1080px;
+}
+
+div.ColorBorderProjects {
+    position: absolute;
+    top: 2100px;
+}
+
+div.FlexibleArticles {
+    margin-top: 360px;
+    display: flex;
+    justify-content: center;
+}
+
+section.ArticlesArrayFlexible {
+    flex: 33%;
+    margin: 27px;
+}
+
+section.ArticlesLinksFlexible {
+    flex: 33%;
+    margin: 27px;
+}
+/* Projects Border Start */
+div.ProjectsBorder {
+    display: flex;
+}
+
+div.ProjectsFlexible {
+    flex: 50%;
+    margin: 27px;
+    padding: 9px;
+    border: 3px solid black;
+    border-style: dashed;
+    border-radius: 0% 0% 0% 0% / 0% 0% 0% 0%;
+    box-shadow: -9px 9px rgba(0,0,0,.27);
+    transition: all .9s ease;
+}
+
+img.ProjectsImages {
+    height: calc(100vh / 3);
+    width: 50%;
+}
+
+p.ProjectsParagraph {
+    margin-top: 9px;
+}
+
+div.ProjectsFlexibleImages {
+    display: flex;
+}
+
+p.FlexibleImageParagraph {
+    flex: 50%;
+}
+
+img.FlexibleProjectsImages {
+    width: 66.666%;
+}
+
+a.ProjectsLinks {
+    color: #123369;
+}
+
+video.ProjectsImages {
+    width: 66%;
+}
+/* Flexible Articles Links */
+a.ArticlesLink {
+    color: #000000;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+    a.ArticlesLink:hover {
+        color: #369369;
+    }
+
+a.UnstyledLink {
+    text-decoration: none;
+    color: #369369;
+}
+/* Flexible Articles Image Displays */
+img.ArticleImages {
+    width: 100%;
+    border: 9px solid #fff;
+    border-radius: 0% 0% 0% 0% / 0% 0% 0% 0%;
+    box-shadow: -9px 9px rgba(0,0,0,.27);
+    transition: all .3s ease;
+    margin: 27px;
+}
+/* Footer */
+a.Copyright {
+    text-decoration: none;
+    color: #123369;
+}
+
+div.Copyright {
+    color: #ffffff;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100vw;
+    text-align: center;
+    margin: 9px;
+}
+
+div.FooterColor {
+    position: absolute;
+    top: 2100px;
+    width: 100vw;
+    height: calc(100vh / 10);
+    background-color: #369369;
+    z-index: -1;
+}
+
+div.FooterColorRoadmap {
+    position: absolute;
+    top: 1800px;
+    width: 100vw;
+    height: calc(100vh / 10);
+    background-color: #369369;
+    z-index: -1;
+}
+
+div.FooterColorProjects {
+    position: absolute;
+    top: 3300px;
+    width: 100vw;
+    height: calc(100vh / 10);
+    background-color: #369369;
+    z-index: -1;
+}
+
+div.FooterColorAllArticles {
+    position: absolute;
+    top: 16200px;
+    width: 100vw;
+    height: calc(100vh / 10);
+    background-color: #369369;
+    z-index: -1;
+}
+
+div.FooterColorAllSynthesizerArticles {
+    position: absolute;
+    top: 2700px;
+    width: 100vw;
+    height: calc(100vh / 10);
+    background-color: #369369;
+    z-index: -1;
+}
+
+div.FooterColorAllOSArticles {
+    position: absolute;
+    top: 3000px;
+    width: 100vw;
+    height: calc(100vh / 10);
+    background-color: #369369;
+    z-index: -1;
+}
+
+div.FooterColorAllLanguageArticles {
+    position: absolute;
+    top: 10800px;
+    width: 100vw;
+    height: calc(100vh / 10);
+    background-color: #369369;
+    z-index: -1;
+}
+/* Command Wall */
+
+div.AlignTable {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 36px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Road Map */
+
+iframe {
+    position: absolute;
+    top: 36px;
+}
+
+/* Privacy */
+
+p.ParagraphPrivacy {
+    position: absolute;
+    top: 36px;
+}
+
+section.MainConsolePrivacy {
+    position: absolute;
+    top: 72px;
+}
+
+div.ChildConsolesPrivacy {
+    position: absolute;
+    top: 90px;
+}
+
+/* Articles */
+
+div.Articles {
+    position: absolute;
+    top: 36px;
+    left: 270px;
+    right: 270px;
+}
+
+img.ArticleImages {
+    display: block;
+    width: calc(100vw / 3);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+video.ArticleVideos {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border: 9px solid #fff;
+    border-radius: 0% 0% 0% 0% / 0% 0% 0% 0%;
+    box-shadow: -9px 9px rgba(0,0,0,.27);
+    transition: all .3s ease;
+}
+
+div#StickyNavigationAllArticles {
+    position: fixed;
+    top: 36px;
+    left: 9px;
+}
+
+a.SmallText {
+    font-size: 12px;
+}
+
+a#InnerArticleLink {
+    text-decoration: none;
+    color: brown;
+}
+
+/**/
+/**/
+/**/
+/* @media Screen. */
+/* 2700 */
+@media screen and (max-width: 2700px) {
+    body {
+        max-width: 2700px;
+    }
+
+    section.InstructionType {
+        margin: 9px;
+    }
+
+    div.TopNavigationSideLink {
+        left: 21px;
+    }
+
+    img.UnderInput {
+        position: absolute;
+        top: 1028px;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    div.ColorBorderProjects {
+        position: absolute;
+        top: 1620px;
+    }
+
+    div.FooterColorProjects {
+        position: absolute;
+        top: 2700px;
+        width: 100vw;
+        height: calc(100vh / 10);
+        background-color: #369369;
+        z-index: -1;
+    }
+}
+
+/* 2400 */
+@media screen and (max-width: 2400px) {
+    body {
+        max-width: 2400px;
+    }
+
+    section.InstructionType {
+        margin: 9px;
+    }
+
+    div.TopNavigationSideLink {
+        left: 21px;
+    }
+
+    img.UnderInput {
+        position: absolute;
+        top: 1028px;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    div.ColorBorderProjects {
+        position: absolute;
+        top: 1620px;
+    }
+
+    div.FooterColorProjects {
+        position: absolute;
+        top: 2700px;
+        width: 100vw;
+        height: calc(100vh / 10);
+        background-color: #369369;
+        z-index: -1;
+    }
+}
+
+/* 2100 */ /* Begins drop down secondary menu. */
+@media screen and (max-width: 2100px) {
+    body {
+        max-width: 2100px;
+    }
+
+    section.InstructionType {
+        margin: 9px;
+    }
+
+
+    div.TopNavigationSideLink {
+        left: 21px;
+    }
+
+    img.UnderInput {
+        position: absolute;
+        top: 1028px;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    div.ColorBorderProjects {
+        position: absolute;
+        top: 1350px;
+    }
+
+    div.FooterColorProjects {
+        position: absolute;
+        top: 2400px;
+        width: 100vw;
+        height: calc(100vh / 10);
+        background-color: #369369;
+        z-index: -1;
+    }
+}
+
+/* 1800 */
+@media screen and (max-width: 1800px) {
+    body {
+        max-width: 1800px;
+    }
+
+    section.InstructionType {
+        margin: 9px;
+    }
+
+    div.TopNavigationSideLink {
+        left: 18px;
+    }
+
+    img.UnderInput {
+        position: absolute;
+        top: 1028px;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    div.ColorBorderProjects {
+        position: absolute;
+        top: 1350px;
+    }
+
+    div.FooterColorProjects {
+        position: absolute;
+        top: 2400px;
+        width: 100vw;
+        height: calc(100vh / 10);
+        background-color: #369369;
+        z-index: -1;
+    }
+}
+
+/* 1500 */
+@media screen and (max-width: 1500px) {
+    body {
+        max-width: 1500px;
+    }
+
+    section.InstructionType {
+        margin: 9px;
+    }
+
+    div.TopNavigationSideLink {
+        left: 15px;
+    }
+
+    img.UnderInput {
+        position: absolute;
+        top: 1028px;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+    }
+
+    div.ColorBorderProjects {
+        position: absolute;
+        top: 1350px;
+    }
+
+    div.FooterColorProjects {
+        position: absolute;
+        top: 2400px;
+        width: 100vw;
+        height: calc(100vh / 10);
+        background-color: #369369;
+        z-index: -1;
+    }
+}
+
+/* 1200 */
+@media screen and (max-width: 1200px) {
+    body {
+        max-width: 1200px;
+    }
+
+    section.InstructionType {
+        margin: 9px;
+    }
+
+    div.TopNavigationSideLink {
+        left: 12px;
+    }
+
+    img.UnderInput {
+        position: absolute;
+        top: 1028px;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    div.ColorBorderProjects {
+        position: absolute;
+        top: 1350px;
+    }
+
+    div.FooterColorProjects {
+        position: absolute;
+        top: 2400px;
+        width: 100vw;
+        height: calc(100vh / 10);
+        background-color: #369369;
+        z-index: -1;
+    }
+}
+
+/* 900 */
+@media screen and (max-width: 900px) {
+    body {
+        max-width: 900px;
+    }
+
+    section.InstructionType {
+        margin: 9px;
+    }
+
+    div.TopNavigationSideLink {
+        left: 9px;
+    }
+
+    div.FlexibleArticles {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    section.ArticlesArrayFlexible {
+        flex: 100%;
+        margin: 27px;
+    }
+
+    section.ArticlesLinksFlexible {
+        flex: 100%;
+        margin: 27px;
+    }
+
+    .NoMobileDisplay {
+        display: none;
+    }
+
+    img.ArticleImages {
+        width: 90%;
+        margin: 27px;
+    }
+
+    img.UnderInput {
+        position: absolute;
+        top: 1028px;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    div.ColorBorderProjects {
+        position: absolute;
+        top: 1800px;
+    }
+
+    div.FooterColorProjects {
+        position: absolute;
+        top: 3600px;
+        width: 100vw;
+        height: calc(100vh / 10);
+        background-color: #369369;
+        z-index: -1;
+    }
+
+    canvas.TreeCanvasLeftTop {
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        top: 360px;
+        background: #123123;
+    }
+
+    canvas.TreeCanvasRightTop {
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        top: 720px;
+        background: #369369;
+    }
+
+    div.FlexibleInstructionsContainer {
+        position: absolute;
+        top: 1080px;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    input.KeyboardInput {
+        position: absolute;
+        height: 27px;
+        width: 66.666vw;
+        top: 1350px;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 1rem;
+    }
+
+    img.UnderInput {
+        position: absolute;
+        top: 1377px;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    div.ColorBorder {
+        position: absolute;
+        top: 1500px;
+    }
+
+    div.FooterColor {
+        position: absolute;
+        top: 3000px;
+        width: 100vw;
+        height: calc(100vh / 10);
+        background-color: #369369;
+        z-index: -1;
+    }
+
+}
+
+/* 600 */
+@media screen and (max-width: 600px) {
+    body {
+        max-width: 600px;
+    }
+
+    section.InstructionType {
+        margin: 9px;
+    }
+
+    div.TopNavigationSideLink {
+        left: 6px;
+    }
+
+    div.FlexibleArticles {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    section.ArticlesArrayFlexible {
+        flex: 100%;
+    }
+
+    section.ArticlesLinksFlexible {
+        flex: 100%;
+    }
+
+    .NoMobileDisplay {
+        display: none;
+    }
+
+    img.ArticleImages {
+        width: 90%;
+        margin: 27px;
+    }
+
+    div.ColorBorderProjects {
+        position: absolute;
+        top: 2100px;
+    }
+
+    div.FooterColorProjects {
+        position: absolute;
+        top: 3600px;
+        width: 100vw;
+        height: calc(100vh / 10);
+        background-color: #369369;
+        z-index: -1;
+    }
+
+    canvas.TreeCanvasLeftTop {
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        top: 360px;
+        background: #123123;
+    }
+
+    canvas.TreeCanvasRightTop {
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        top: 720px;
+        background: #369369;
+    }
+
+    input.KeyboardInput {
+        position: absolute;
+        height: 27px;
+        width: 66.666vw;
+        top: 1350px;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 1rem;
+    }
+
+    img.UnderInput {
+        position: absolute;
+        top: 1377px;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    div.ColorBorder {
+        position: absolute;
+        top: 1500px;
+    }
+
+    div.FooterColor {
+        position: absolute;
+        top: 3000px;
+        width: 100vw;
+        height: calc(100vh / 10);
+        background-color: #369369;
+        z-index: -1;
+    }
+}
+
+/* 480 */
+@media screen and (max-width: 480px) {
+    body {
+        max-width: 360px;
+    }
+
+    section.InstructionType {
+        margin: 9px;
+    }
+
+    div.TopNavigationSideLink {
+        left: 3px;
+    }
+
+    div.FlexibleArticles {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    section.ArticlesArrayFlexible {
+        flex: 100%;
+    }
+
+    section.ArticlesLinksFlexible {
+        flex: 100%;
+    }
+
+    .NoMobileDisplay {
+        display: none;
+    }
+
+    img.ArticleImages {
+        width: 90%;
+        margin: 27px;
+    }
+
+    div.ColorBorderProjects {
+        position: absolute;
+        top: 2700px;
+    }
+
+    div.FooterColorProjects {
+        position: absolute;
+        top: 3900px;
+        width: 100vw;
+        height: calc(100vh / 10);
+        background-color: #369369;
+        z-index: -1;
+    }
+
+    canvas.TreeCanvasLeftTop {
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        top: 360px;
+        background: #123123;
+    }
+
+    canvas.TreeCanvasRightTop {
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        top: 720px;
+        background: #369369;
+    }
+
+    input.KeyboardInput {
+        position: absolute;
+        height: 27px;
+        width: 66.666vw;
+        top: 1350px;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 1rem;
+    }
+
+    img.UnderInput {
+        position: absolute;
+        top: 1377px;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    div.ColorBorder {
+        position: absolute;
+        top: 1500px;
+    }
+
+    div.FooterColor {
+        position: absolute;
+        top: 3000px;
+        width: 100vw;
+        height: calc(100vh / 10);
+        background-color: #369369;
+        z-index: -1;
+    }
+}
+
+/* 360 */
+@media screen and (max-width: 360px) {
+    body {
+        max-width: 270px;
+    }
+
+    section.InstructionType {
+        margin: 9px;
+    }
+
+    div.TopNavigationSideLink {
+        left: 3px;
+    }
+
+    div.FlexibleArticles {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    section.ArticlesArrayFlexible {
+        flex: 100%;
+    }
+
+    section.ArticlesLinksFlexible {
+        flex: 100%;
+    }
+
+    .NoMobileDisplay {
+        display: none;
+    }
+
+    img.ArticleImages {
+        width: 90%;
+        margin: 27px;
+    }
+
+    div.ColorBorderProjects {
+        position: absolute;
+        top: 3600px;
+    }
+
+    div.FooterColorProjects {
+        position: absolute;
+        top: 4800px;
+        width: 100vw;
+        height: calc(100vh / 10);
+        background-color: #369369;
+        z-index: -1;
+    }
+
+    canvas.TreeCanvasLeftTop {
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        top: 360px;
+        background: #123123;
+    }
+
+    canvas.TreeCanvasRightTop {
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        top: 720px;
+        background: #369369;
+    }
+
+    input.KeyboardInput {
+        position: absolute;
+        height: 27px;
+        width: 66.666vw;
+        top: 1350px;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 1rem;
+    }
+
+    img.UnderInput {
+        position: absolute;
+        top: 1377px;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    div.ColorBorder {
+        position: absolute;
+        top: 1500px;
+    }
+
+    div.FooterColor {
+        position: absolute;
+        top: 3000px;
+        width: 100vw;
+        height: calc(100vh / 10);
+        background-color: #369369;
+        z-index: -1;
+    }
+}

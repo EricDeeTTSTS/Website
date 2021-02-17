@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <UserSecretsId>aspnet-EricDeeTTSTS-04D456D3-8F26-4781-90A9-D5922342EC9E</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Views\Home\Class.html" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\DisplayMedia\Diagrams\TTSTS Class Diagram.class.violet.html" />
+    <None Include="wwwroot\DisplayMedia\Diagrams\TTSTS Class Diagram.png" />
+    <None Include="wwwroot\lib\p5\.DS_Store" />
+    <None Include="wwwroot\lib\p5\addons\p5.sound.js" />
+    <None Include="wwwroot\lib\p5\addons\p5.sound.min.js" />
+    <None Include="wwwroot\lib\p5\p5.js" />
+    <None Include="wwwroot\lib\p5\p5.min.js" />
+    <None Include="wwwroot\lib\p5\p5.sound.js" />
+    <None Include="wwwroot\lib\p5\p5.sound.min.js" />
+    <None Include="wwwroot\lib\p5\README.txt" />
+    <None Include="wwwroot\lib\p5\sketch.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="jQuery" Version="3.5.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Twitter" Version="5.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.1" />
+    <PackageReference Include="TweetSharp" Version="2.3.1" />
+  </ItemGroup>
+
+</Project>

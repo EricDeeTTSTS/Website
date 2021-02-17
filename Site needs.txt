@@ -1,0 +1,15 @@
+=== For tweeting ===
+
+Stores commands in a text file
+server regularly reads through them and updates
+
+int count = 0;
+
+string[] Text = File.ReadAllLines(/*Path to the file here*/);
+
+for (int i = 0; i < Text.Count(); i++)
+{
+        count += Text[i].Length;
+}
+
+=========

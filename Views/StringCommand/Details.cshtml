@@ -4,22 +4,47 @@
     ViewData["Title"] = "Details";
 }
 
-<link href="~/css/site.css" rel="stylesheet" runat="server" />
-<h1>Details</h1>
+<!-- 2-5-2021
+Author: Eric Dee
+http://EricDeeTTSTS.com/ -->
 
-<div>
-    <h4>StringCommand</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Command)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Command)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+<link href="~/css/boot.css" rel="stylesheet" runat="server" />
+<body>
+    <header>
+        <meta charset="uft-8" />
+        <meta name="author" content="Eric Dee">
+        <meta name="description" content="More details about a command.">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </header>
+
+    <section id="MainConsole">
+    </section>
+
+    <div id="FlexArea">
+
+        <section class="ConsoleFlexArea" id="ChildConsole1">
+        </section>
+
+        <section class="ConsoleFlexArea" id="ChildConsole2">
+        </section>
+
+    </div>
+
+    <h1>Details</h1>
+
+    <div>
+        <h4>This is a display of what you clicked.</h4>
+        <hr />
+        <dl class="row">
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Command)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+        <a asp-action="Index">Back</a>
+    </div>
+
+</body>

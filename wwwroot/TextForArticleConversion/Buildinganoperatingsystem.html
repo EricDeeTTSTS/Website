@@ -1,0 +1,150 @@
+﻿<head>
+    <link href="../css/boot.css" rel="stylesheet" runat="server" />
+</head>
+
+<body id="Articles">
+
+    <header>
+        <meta charset="uft-8" />
+        <meta name="author" content="Eric Dee">
+        <meta name="description" content="OS.">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </header>
+
+    <div class="TopNavigationLink">
+
+        <p class="Centered"><a class="TopSideIndexLinks" href="https://ericdeettsts.com">&#8767</a></p>
+
+    </div>
+
+    <div class="TopNavigationLinkArticles">
+
+        <p class="Centered"><a class="TopSideIndexLinksArticles" href="https://ericdeettsts.com">&#8767</a></p>
+
+    </div>
+
+    <div id="StickyNavigationAllArticles">
+        <a class="UnstyledLink SmallText" href="#Kernel1">Building an OS part 1</a> <br />
+        <a class="UnstyledLink SmallText" href="#Kernel2">Building an OS part 2</a> <br /> <br />
+        <a class="UnstyledLink SmallText" href="#Articles">Back to top</a> <br /> <br /><br /><br /><br />
+        <a class="UnstyledLink SmallText" href="https://ericdeettsts.com">Return home</a>
+    </div>
+
+    <div class="Articles">
+
+        <article id="Kernel2">
+            <h3><u class="Index">Interpreting keys in binary (part 2)</u></h3>
+            <p>
+                <time class="Dated" datetime="2021-01-03" title="2021-01-03" style="font-size: .66rem; padding: 3px;"><i>January 03, 2021</i></time>
+            </p>
+
+            <p>
+                <a href="../DisplayMedia/ConvertingBinary3.png" target="_blank">
+                    <img class="ArticleImages" src="../DisplayMedia/ConvertingBinary3.png" alt="For some reason, your browser did not load this image." />
+                </a>
+            </p>
+
+            <p>
+                This section is more involved than booting a computer. First, define a string that is empty.
+                Use this to begin passing bytes to from int 22 (hex 0x16). On each interrupt, the computer
+                holds the key value in al, as per the 00h service (0) specified in ah. al is where the result is
+                placed. This continues to return and allow user input [makes an array of ASCII decimals],
+                when enter is found, it is not added to the string. After a comparison to hex 0xd is flagged
+                true, the instruction pointer "jumps" to a code section defined by the writer, and restores the string
+                to si to reset its index. Then, the computer compares the first character in its input string
+                to the options that it sees. When it finds an option in memory that matches, it jumps to the code block with which it represents.
+            </p> <br />
+
+            <p>
+                <a href="../DisplayMedia/ConvertingBinary1.png" target="_blank">
+                    <img class="ArticleImages" src="../DisplayMedia/ConvertingBinary1.png" alt="For some reason, your browser did not load this image." />
+                </a>
+            </p>
+
+            <p>
+                A few new lines are printed using interrupt 0x10 (decimal 16),
+                and a prompt is made one last time for input. This happens smoothly, and the prompt isn't
+                really seen. A predefined string of 8 bytes is now loaded into si. Each
+                byte has a decimal value of 48 (character "0"). This is for representing 1 bit.
+            </p> <br />
+
+            <p>
+                The value in al is used as an argument in the binary converter. Index zero is always loaded a value of 48.
+                A comparison is made against 127 in al, which is the upper ASCII limit. Technically the value is 128 or 2 to the seventh power,
+                except the comparison like that isn't possible, as the decimal visual representation doesn't exist. ASCII only reaches 127.
+                If the value is greater, the program exits, because that means there was an error, or some form of an overflow. If the flag
+                from the comparison is zero, the pointer jumps to the Zero label and the instruction exits.
+            </p> <br />
+
+            <p>
+                <a href="../DisplayMedia/ConvertingBinary2.png" target="_blank">
+                    <img class="ArticleImages" src="../DisplayMedia/ConvertingBinary2.png" alt="For some reason, your browser did not load this image." />
+                </a>
+            </p>
+
+            <p>
+                The index is incremented by one, and the process begins again. This time it uses 64; or 2 to
+                the power of 6. Each time this occurs, and the value in al is greater than or equal to the
+                calculation of an exponent from base 2, that value gets subtracted from the present value in al. If
+                it's greater, a 1 is loaded into the location which the si register points to on the string.
+                From there, the pointer moves on and checks whether it is greater than each of the factors, writing
+                either a 1 or a 0 into the byte array that is defined by the string. Finally it reaches the
+                zeroth power, and it exits.
+            </p> <br />
+
+        </article>
+
+        <article id="Kernel1">
+            <h3><u class="Index">Kernel from bootSector (part 1)</u></h3>
+            <p>
+                <time class="Dated" datetime="2021-01-03" title="2021-01-03" style="font-size: .66rem; padding: 3px;"><i>January 03, 2021</i></time>
+            </p>
+
+            <p>
+                <a href="../DisplayMedia/bootSector.png" target="_blank"><img class="ArticleImages" src="../DisplayMedia/bootSector.png" alt="For some reason, your browser did not load this image." /></a>
+            </p>
+
+            <p>
+                Writing a Kernel is extremely simple. Finding out how to do it, well that's another story.
+                There aren't a lot of guides out there doing this in assembly. You have to know where to look.
+            </p> <br />
+
+            <p>
+                This is how I found out how to jump out of the bootSector and into a Kernel. You just set everything
+                up like I put in the pictures. Each label denotes a sector read from the disk. If you google the interrupt
+                you can find out what each section represents.
+            </p> <br />
+
+            <h3>Getting into sectors from a bootLoader</h3>
+            <p>
+                This part is also easy. It's just not well known. The answer is very minimal.
+                Each binary file must be loaded onto the computers drive in order.
+                That makes sectors accessible by the read interrupt. Do this by concatenating the binary files into a
+                single .bin. Here is an example of a make file in Linux to do this in one Linux terminal line.
+            </p> <br />
+
+            <p>
+                <a href="../DisplayMedia/MakeFileKernel.png" target="_blank"><img class="ArticleImages" src="../DisplayMedia/MakeFileKernel.png" alt="For some reason, your browser did not load this image." /></a>
+            </p>
+
+            <h3>Kernel jump.</h3>
+            <p>
+                At this point, just jump to the address in RAM where
+                the kernel was loaded to. Once you get there, you can use the 0x7c00 origin address to get back, but
+                you usually don't need to unless there is a reason for a warm reset.
+            </p> <br />
+
+        </article>
+
+    </div>
+
+    <div class="FooterColorAllOSArticles">
+        <footer>
+            <div class="Copyright">
+                &copy; 2021 EricDeeTTSTS.com - <a class="Copyright" asp-controller="Home" asp-action="Privacy">privacy policy.</a>
+            </div>
+        </footer>
+    </div>
+
+</body>

@@ -1,0 +1,157 @@
+﻿<head>
+    <link href="../css/boot.css" rel="stylesheet" runat="server" />
+</head>
+
+<body id="Articles">
+
+    <header>
+        <meta charset="uft-8" />
+        <meta name="author" content="Eric Dee">
+        <meta name="description" content="Languages.">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </header>
+
+    <div class="TopNavigationLink">
+
+        <p class="Centered"><a class="TopSideIndexLinks" href="https://ericdeettsts.com">&#8767</a></p>
+
+    </div>
+
+    <div class="TopNavigationLinkArticles">
+
+        <p class="Centered"><a class="TopSideIndexLinksArticles" href="https://ericdeettsts.com">&#8767</a></p>
+
+    </div>
+
+    <div id="StickyNavigationAllArticles">
+        <a class="UnstyledLink SmallText" href="#LanguageDev1">Writing a computer language part 1</a> <br />
+        <a class="UnstyledLink SmallText" href="#LanguageDev2">Writing a computer language part 2</a> <br />
+        <a class="UnstyledLink SmallText" href="#LanguageDev3">Writing a computer language part 3</a> <br /> <br />
+        <a class="UnstyledLink SmallText" href="#Articles">Back to top</a> <br /> <br /><br /><br /><br />
+        <a class="UnstyledLink SmallText" href="https://ericdeettsts.com">Return home</a> <br />
+    </div>
+
+    <div class="Articles">
+
+        <article id="LanguageDev3">
+            <h3 class="Index"><u class="Index">Beginning objective conversion (part 3)</u></h3>
+            <p>
+                <time class="Dated" datetime="2021-01-17" title="2021-01-17" style="font-size: .66rem; padding: 3px;"><i>January 17, 2021</i></time>
+            </p>
+
+            <p>A Visual Studio C# link</p>
+
+            <p>
+                <a href="https://github.com/EricDeeTTSTS/01-17-2021-TTSTS-Language-Written-In-CSharp-v1" target="_blank">on Github</a>
+            </p>
+
+            <p class="ProjectsParagraph">
+                <a class="ProjectsLinks" href="https://github.com/EricDeeTTSTS/01-31-2021-TTSTS-Language-Written-In-CSharp-v2" target="_blank">C# Github repository (v2)</a>
+            </p>
+
+            <p class="ProjectsParagraph">
+                <a class="ProjectsLinks" href="https://github.com/EricDeeTTSTS/01-17-2021-TTSTS-Language-Written-In-CSharp-v1" target="_blank">C# Github repository (v1)</a>
+            </p> <br />
+
+            <p>
+                Since the interpreter is written and working properly with exit functions, it's time for a
+                more mathematical approach. In this article, I discuss how to determine instruction keywords using decimal values to deduce ASCII character strings.
+            </p> <br />
+
+            <p>
+                I remove all signaled ("") character logic checks, and replace methods with decimal counters. The computer needs to take an input, then it
+                has to insert the string into memory. The most crucial part to this is that the writer must replace all visual characters with decimal counterparts.
+                In so doing, all letters can be added as numbers. At this stage, a paragraph can be represented as a sum. With this sum, you can subtract user definitions,
+                AKA instructions; to get whether a sentence exists, and whether that sentence makes any sense.
+            </p> <br />
+
+            <p>
+                It's really that simple. If you look at the images, you can see that all that is left to do is define your own instructions by declaring key value pair
+                dictionaries. For example, 619 = the sentence "To blue". From here, you can do whatever you want. You just need to implement methods to check for character
+                ordering for some fringe use cases where properly arranged sentences might add up to the same number. Be sure to stay tuned for more information.
+            </p> <br />
+
+            <p>
+                <script src="https://gist.github.com/EricDeeTTSTS/b82f7dacea3f57650db6f8546d8dac1b.js"></script>
+            </p>
+
+            <p>
+                <script src="https://gist.github.com/EricDeeTTSTS/220f8f28d137e0dcb4546d4577578aa6.js"></script>
+            </p>
+
+            <p>
+                <script src="https://gist.github.com/EricDeeTTSTS/eb8be38c4e859b094734da09da1df48d.js"></script>
+            </p>
+
+            <p>
+                <script src="https://gist.github.com/EricDeeTTSTS/76c1fa9537ceb5d30a0ff7a890c44f8a.js"></script>
+            </p>
+
+        </article>
+
+        <article id="LanguageDev2">
+            <h3><u class="Index">Lexer improvements (part 2)</u></h3>
+            <p>
+                <time class="Dated" datetime="2021-01-13" title="2021-01-13" style="font-size: .66rem; padding: 3px;"><i>January 13, 2021</i></time>
+            </p>
+
+            <p>
+                I saw someone entered a command ",Get resume.". It caused the lexical analyzer to fail!
+            </p> <br />
+
+            <p>
+                What did I do to fix it? It took some thinking, especially since this lexer is a pre-dated version. There's just so much to do and I have to be smart
+                with my focus; so the fix was this; add emergency exits, and provide the lexer with a "smart" detection system.
+            </p> <br />
+
+            <p>
+                By using decimal values instead of ASCII visual characters, the lexer now just checks if the number is equal to a letter representation, and if it does
+                tries to read it. There is a lookahead to take into account, which causes this thing to be a very powerful switch mechanism. It does an awesome job at deducing
+                instructions regardless of their order, and terminating; but it doesn't do as well of a job at "being humanized", so if it doesn't find something it knows, it gets
+                caught in a forever loop. The fix to that, is to program it to always quit if it ever gets caught, or "confused". Now it's just about 100% reliable.
+            </p> <br />
+
+            <p>
+                Check out the gist below, and be sure to stay tuned for more information.
+            </p> <br />
+
+            <p>
+                <script class="GithubGists" src="https://gist.github.com/EricDeeTTSTS/e9c92bd27f634dc627d226c409a307bc.js"></script>
+            </p>
+
+        </article>
+
+        <article id="LanguageDev1">
+            <h3><u class="Index">Base before objective convesion (part 1)</u></h3>
+            <p>
+                <time class="Dated" datetime="2021-01-09" title="2021-01-09" style="font-size: .66rem; padding: 3px;"><i>January 09, 2021</i></time>
+            </p>
+
+            <p>
+                <script src="https://gist.github.com/EricDeeTTSTS/37e069fa1fbb524451110620b5b68fbb.js"></script>
+            </p>
+
+            <p>
+                I wanted to provide an example of a procedurally programmed language like the one I first began in C. I wrote it in
+                JavaScript to complement my website, and it branched into many outstanding new ideas and features.
+            </p> <br />
+
+            <p>
+                I have moved on from this and now program in class based JavaScript or C#. I do not know if I intend to do a full write up on this type of programming
+                any time soon. You may inspect this website to view the source code. As it still uses it for certain features. Be sure to stay tuned for more information.
+            </p> <br />
+
+        </article>
+
+    </div>
+
+    <div class="FooterColorAllLanguageArticles">
+        <footer>
+            <div class="Copyright">
+                &copy; 2021 EricDeeTTSTS.com - <a class="Copyright" asp-controller="Home" asp-action="Privacy">privacy policy.</a>
+            </div>
+        </footer>
+    </div>
+
+</body>

@@ -1,0 +1,167 @@
+﻿<head>
+    <link href="../css/boot.css" rel="stylesheet" runat="server" />
+</head>
+
+<body id="Articles">
+
+    <header>
+        <meta charset="uft-8" />
+        <meta name="author" content="Eric Dee">
+        <meta name="description" content="Synthesis.">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </header>
+
+    <div class="TopNavigationLink">
+
+        <p class="Centered"><a class="TopSideIndexLinks" href="https://ericdeettsts.com">&#8767</a></p>
+
+    </div>
+
+    <div class="TopNavigationLinkArticles">
+
+        <p class="Centered"><a class="TopSideIndexLinksArticles" href="https://ericdeettsts.com">&#8767</a></p>
+
+    </div>
+
+    <div id="StickyNavigationAllArticles">
+        <a class="UnstyledLink SmallText" href="#Synth1">Creating a synthesizer part 1</a> <br />
+        <a class="UnstyledLink SmallText" href="#Synth1WaveExplanation">Trigonometry for sound part 1</a> <br />
+        <a class="UnstyledLink SmallText" href="#Synth2">Creating a synthesizer part 2</a> <br /> <br />
+        <a class="UnstyledLink SmallText" href="#Articles">Back to top</a> <br /> <br /><br /><br /><br />
+        <a class="UnstyledLink SmallText" href="https://ericdeettsts.com">Return home</a>
+    </div>
+
+    <div class="Articles">
+
+        <article id="Synth2">
+            <h3><u class="Index">Functional synth showcase (part 2)</u></h3>
+            <p>
+                <time class="Dated" datetime="2021-01-11" title="2021-01-11" style="font-size: .66rem; padding: 3px;"><i>January 11, 2021</i></time>
+            </p>
+
+            <p>
+                It worked! Find the article I wrote on how to understand sound wave/buffering <a id="InnerArticleLink" href="#Synth1WaveExplanation">here</a>.
+            </p> <br />
+
+            <p>
+                <a href="../DisplayMedia/Synthesizer Oscilloscope.PNG" target="_blank">
+                    <img class="ArticleImages" src="../DisplayMedia/Synthesizer Oscilloscope.PNG" alt="For some reason, your browser did not load this image." />
+                </a>
+            </p>
+
+            <p>
+                <video class="ArticleVideos" width="300" height="200" controls>
+                    <source src="../DisplayMedia/Videos/Synthesizer - Second Version.mp4" type="video/mp4">
+                </video>
+            </p>  <br />
+
+        </article>
+
+        <article id="Synth1">
+            <h3><u class="Index">Synthesizer (part 1)</u></h3>
+            <p>
+                <time class="Dated" datetime="2021-01-09" title="2021-01-09" style="font-size: .66rem; padding: 3px;"><i>January 09, 2021</i></time>
+            </p>
+
+            <p>
+                <a href="../DisplayMedia/Synthesizer Skeleton.PNG" target="_blank">
+                    <img class="ArticleImages" src="../DisplayMedia/Synthesizer Skeleton.PNG" alt="For some reason, your browser did not load this image." />
+                </a>
+            </p>
+
+            <p>
+                <video class="ArticleVideos" width="300" height="200" controls>
+                    <source src="../DisplayMedia/Videos/Synthesizer - First Version.mp4" type="video/mp4">
+                </video>
+            </p> <br />
+
+            <p>
+                I have a ton of experience with sound design and software synthesis, and I hold electronic sound
+                development dear to my heart. When I realized I was a good enough programmer to create my own
+                synthesizer I became very enthusiastic about it, and got straight into it.
+            </p> <br />
+
+            <p>
+                I just want to point out that this takes a significant amount of scientific clearance with regards to
+                how much effort you are going to have to put into generating arrays for wave design. Even with 9 years
+                sound production and nerding out over bit depths and all other sorts of dithering techniques, I still found
+                this to be quite a struggle, as most people would agree who have gone down such a path. It's hard stuff!
+                Trigonometry wasn't something I had experience with yet, so I had to teach myself! Was definitely worth it
+                though... So let's get started shall we?
+            </p> <br />
+
+            <h3 id="Synth1WaveExplanation">Trigonometry for sound (part 1)</h3>
+
+            <p>
+                You have to initialize a sample rate. If you don't get this already, please take some time off and go study it.
+                None of it is going to click if you don't already have experience with some sort of bit rate, or hertz generation
+                calculation technique. These same techniques are also involved in booting an OS. If you want some help with that, try
+                my OS discussion. It all adds up.
+            </p> <br />
+
+            <p>
+                A sample rate is a certain number that fits inside of a calculation which is to be divided or iterated upon over time.
+                In this case, it is used to determine how many bytes are neccessary to find a hz frequency over 1 second of time.
+            </p> <br />
+
+            <p>
+                For a trigonometry buff, I would liken to the total count of cosine, tangent, or sine theta/hypotenuse calculations
+                that you need.
+            </p> <br />
+
+            <p>
+                A loop is formed to count each sample. This is called the index, or in my case, I chose to call it the "position".
+            </p> <br />
+
+            <p>
+                As the index is iterated, you determine the wave position by multiplying the maximum value held in your datatype.
+            </p> <br />
+
+            <p>
+                To generate a wave you need to calculate a circle. A diameter is found using the formula 2pi * r. To determine the xy
+                position, you use the formula for sin, which is the opposite / hypotenuse. Or in this case,
+                sin (diameter determined by frequency / sample rate). This ratio is constant until the wave is finished! So, that means;
+                every position you use to multiply by the ratio of its sin theta value, you get the full circle. Then you amplify it by
+                its maximum allotted space as a datatype.
+            </p> <br />
+
+            <p>
+                This is an extremely important thing to note about how this works. Please pay close attention to this.
+            </p> <br />
+
+            <p>
+                Given all that information it is correct to assume that something can't be right. If you were to multiply by the max
+                allowed space in a datatype, obviously that would mean you'd exceed it, correct? Exactly. Except, a sample rate was defined
+                earlier. This means that everytime the frequency is included, the overall ratio is reduced. Since position in every theta
+                calculation is included; the total amplitude always changes. Thus every resulting value is less than the ratio of 1, therefore;
+                every multiplication onto the datatype is going to be less than its limitation.
+            </p> <br />
+
+            <p>
+                The final calculation should make more sense now. sin (diameter determined by frequency / (sample rate * position)) just means
+                that you are increasing the length of the hypotenuse represented by its position in time, which results in a changing ratio to be
+                multiplied by its limitation.
+            </p> <br />
+
+            <p>
+                <script src="https://gist.github.com/EricDeeTTSTS/ec36c80933eb906ba3b9bba0216eb07e.js"></script>
+            </p>
+
+            <p>
+                The array that has been calculated hosts a wave represenatation. It can either be plotted or block copied onto a sound player class/buffer.
+            </p> <br />
+
+        </article>
+
+    </div>
+
+    <div class="FooterColorAllSynthesizerArticles">
+        <footer>
+            <div class="Copyright">
+                &copy; 2021 EricDeeTTSTS.com - <a class="Copyright" asp-controller="Home" asp-action="Privacy">privacy policy.</a>
+            </div>
+        </footer>
+    </div>
+
+</body>

@@ -1,51 +1,75 @@
 ﻿@{
-    ViewData["Title"] = "Privacy Policy";
+    ViewData["Title"] = "Privacy practices on this site.";
 }
-<h1>@ViewData["Title"]</h1>
 
-<link href="~/css/site.css" rel="stylesheet" runat="server" />
-<script src="/js/site.js"></script>
-<datalist id="Syntax">
-    <option value="View history." />
-    <option value="Get index." />
-    <option value="Get resume." />
-    <option value="Get projects." />
-    <option value="Get contact information." />
-    <option value="Make red." />
-    <option value="Make blue." />
-    <option value="Make gray." />
-    <option value="Make pink." />
-    <option value="Make black." />
-    <option value="Make brown." />
-    <option value="Make green." />
-    <option value="Make white." />
-    <option value="Make orange." />
-    <option value="Make purple." />
-    <option value="Make yellow." />
+<script src="/js/CommandLine.js"></script>
+<script src="~/js/Interpreter.js"></script>
+<link href="~/css/boot.css" rel="stylesheet" runat="server" />
+
+<datalist id="Instructions">
+    <option value="go index" />
+    <option value="go projects" />
+    <option value="view history" />
+    <option value="view roadmap" />
+    <option value="view sourcecode" />
+    <option value="reset" />
 </datalist>
 
-<p>None of the information you enter will be used besides to allow you to update the database.</p>
+<body onload="PrintCommandConsoles(1)">
 
-<div class="text-center">
-    <br />
-    <br />
-    <br />
-    <input class="ss" list="Syntax" type="text" id="JSInstructionString" placeholder="Make gray." />
-    <button class="tt btn btn-primary" onclick="Build()">Build (press enter)</button>
-    <br />
-</div>
-<br />
-<br />
-<br />
-<body>
+    <div class="TopNavigationLink">
+
+        <p class="Centered"><a class="TopSideIndexLinks" asp-area="" asp-controller="Home" asp-action="Index">&#8767</a></p>
+
+    </div>
+
     <header>
-        <!-- 1-3-2021
-        Author: Eric Dee
-        http://EricDeeTTSTS.com/ -->
         <meta charset="uft-8" />
-        <meta name="author" content="Eric Christopher Dee, Eric C. Dee, Eric Dee">
-        <meta name="description" content="Portfolio">
+        <meta name="author" content="Eric Dee">
+        <meta name="description" content="Your information.">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </header>
-</body>
 
-<script src="/js/KeyUp.js"></script>
+    <input class="KeyboardInputPrivacy" id="KeyboardInput" Type="text" placeholder="view roadmap" list="Instructions" />
+
+    <img class="UnderInputPrivacy" src="../DisplayMedia/UnderInput.png" />
+
+    <p class="ParagraphPrivacy">None of the information you enter is ever used by the site owner. Only your commands get stored, keeping you generally anonymous.</p>
+
+    <script>
+        document.getElementById("UserInput").addEventListener("keyup", function (event) {
+            if (event.keyCode === 13) {
+                if (!ConsolePrinterIsBusy) {
+                    Build();
+                }
+            }
+        });
+    </script>
+
+    <section class="MainConsolePrivacy" id="MainConsolePrivacy">
+    </section>
+
+    <div class="ChildConsolesPrivacy">
+
+        <div id="FlexArea">
+
+            <section class="ConsoleFlexArea" id="ChildConsole1">
+            </section>
+
+            <section class="ConsoleFlexArea" id="ChildConsole2">
+            </section>
+
+        </div>
+
+    </div>
+
+    <div class="FooterColor">
+        <footer>
+            <div class="Copyright">
+                &copy; 2021 EricDeeTTSTS.com - <a class="Copyright" asp-controller="Home" asp-action="Privacy">privacy policy.</a>
+            </div>
+        </footer>
+    </div>
+
+</body>
